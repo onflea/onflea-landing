@@ -7,7 +7,7 @@ import { useModal } from '@/context/ModalContext'
 function Overlay({ onClose }: { onClose: () => void }) {
   return (
     <div
-      className="fixed inset-0 bg-black/60 z-[100] backdrop-blur-sm"
+      className="fixed inset-0 bg-black/50 z-[100] backdrop-blur-md"
       onClick={onClose}
     />
   )

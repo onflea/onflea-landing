@@ -18,7 +18,7 @@ const solutions = [
 
 export default function SolutionSection() {
   return (
-    <section id="solution" className="bg-white py-24 md:py-32">
+    <section id="solution" className="bg-white pt-8 md:pt-12 pb-24 md:pb-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
         <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
           Solution

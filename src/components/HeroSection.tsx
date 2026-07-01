@@ -6,8 +6,18 @@ export default function HeroSection() {
   const { openCreator, openBuyer } = useModal()
 
   return (
-    <section id="hero" className="bg-[#0c0c0c] min-h-screen flex flex-col">
-      <div className="flex-1 max-w-[1280px] mx-auto px-6 md:px-12 pt-28 pb-16 w-full flex flex-col justify-center">
+    <section id="hero" className="relative bg-[#0c0c0c] min-h-screen flex flex-col overflow-hidden">
+      {/* 그라데이션 오버레이 */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(60% 55% at 85% 35%, rgba(255,77,109,0.09) 0%, rgba(255,77,109,0.03) 45%, transparent 75%), radial-gradient(50% 50% at 15% 90%, rgba(255,77,109,0.05) 0%, transparent 65%)',
+        }}
+      />
+
+      <div className="relative flex-1 max-w-[1280px] mx-auto px-6 md:px-12 pt-28 pb-16 w-full flex flex-col justify-center">
         <div className="max-w-[896px]">
           <div className="inline-flex items-center gap-2.5 border border-[rgba(255,77,109,0.4)] px-[15px] py-[9px] mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#ff4d6d] opacity-70 shrink-0" />
@@ -46,7 +56,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="flex justify-center pb-10">
+      <div className="relative flex justify-center pb-10">
         <div className="flex flex-col items-center gap-2">
           <p className="text-[rgba(255,255,255,0.2)] text-[10px] tracking-[3px] uppercase">Scroll</p>
           <div className="w-px h-10 bg-gradient-to-b from-[rgba(255,255,255,0.2)] to-transparent" />

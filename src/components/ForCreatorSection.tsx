@@ -29,7 +29,7 @@ export default function ForCreatorSection() {
             </p>
             <div className="mb-8">
               <div className="border-l-4 border-[#ff4d6d] pl-5">
-                <p className="text-white text-xl font-black">"옷만 문앞에 두세요.<br></br>나머지는 저희가 대신 해드려요."</p>
+                <p className="text-white text-xl font-black">&ldquo;옷만 문앞에 두세요.<br />나머지는 저희가 대신 해드려요.&rdquo;</p>
               </div>
             </div>
             <div>
