@@ -7,7 +7,7 @@ import { useModal } from '@/context/ModalContext'
 function Overlay({ onClose }: { onClose: () => void }) {
   return (
     <div
-      className="fixed inset-0 bg-black/50 z-[100] backdrop-blur-md"
+      className="fixed inset-0 bg-black/50 z-[100] backdrop-blur-sm"
       onClick={onClose}
     />
   )
@@ -33,8 +33,8 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 z-[101] flex items-center justify-center p-6">
-      <div className="bg-white w-full max-w-[520px] relative rounded-lg shadow-2xl">
+    <div className="fixed inset-0 z-[101] flex items-center justify-center p-6" onClick={onClose}>
+      <div className="bg-white w-full max-w-[520px] relative rounded-lg shadow-2xl" onClick={(e) => e.stopPropagation()}>
         {/* 닫기 버튼 */}
         <button
           onClick={onClose}
@@ -126,8 +126,8 @@ function BuyerModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 z-[101] flex items-center justify-center p-6">
-      <div className="bg-white w-full max-w-[520px] relative rounded-lg shadow-2xl">
+    <div className="fixed inset-0 z-[101] flex items-center justify-center p-6" onClick={onClose}>
+      <div className="bg-white w-full max-w-[520px] relative rounded-lg shadow-2xl" onClick={(e) => e.stopPropagation()}>
         {/* 닫기 버튼 */}
         <button
           onClick={onClose}

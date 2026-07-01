@@ -25,10 +25,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${
         scrolled || menuOpen
-          ? 'bg-white border-b border-[rgba(12,12,12,0.1)]'
-          : 'bg-transparent'
+          ? 'bg-white border-[rgba(12,12,12,0.1)]'
+          : 'bg-transparent border-transparent'
       }`}
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
