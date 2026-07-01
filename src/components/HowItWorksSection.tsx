@@ -62,8 +62,13 @@ export default function HowItWorksSection() {
             const Icon = s.icon
             return (
               <div key={s.num} className="bg-white p-6 md:p-8 flex flex-col">
-                <div className="bg-[#ff4d6d] w-11 h-11 mb-5 shrink-0 flex items-center justify-center">
-                  <Icon size={18} className="text-[#0c0c0c]" />
+                <div className="relative w-11 h-11 mb-5 shrink-0">
+                  {/* 뒤쪽 오프셋 박스 */}
+                  <div className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-[#ffcdd6]" aria-hidden />
+                  {/* 메인 아이콘 박스 */}
+                  <div className="relative w-11 h-11 bg-[#ff4d6d] flex items-center justify-center">
+                    <Icon size={18} className="text-[#0c0c0c]" />
+                  </div>
                 </div>
                 <p className="text-[9px] font-black tracking-[2.25px] text-[rgba(12,12,12,0.25)] mb-2 uppercase">
                   STEP {s.num}
