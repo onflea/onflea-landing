@@ -3,6 +3,7 @@ import Modals from '@/components/Modals'
 import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/HeroSection'
 import ProblemSection from '@/components/ProblemSection'
+import ComparisonSection from '@/components/ComparisonSection'
 import SolutionSection from '@/components/SolutionSection'
 import ForCreatorSection from '@/components/ForCreatorSection'
 import ForBuyerSection from '@/components/ForBuyerSection'
@@ -21,11 +22,12 @@ export default function Home() {
       <main>
         <HeroSection />
         <ProblemSection />
+        <ComparisonSection />
         <SolutionSection />
         <ForCreatorSection />
         <ForBuyerSection />
         <HowItWorksSection />
-        <TrustSection />
+        {/* <TrustSection /> */}
         <SustainabilitySection />
         <EarlyAccessSection />
         <FAQSection />

@@ -23,7 +23,8 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-[rgba(255,255,255,0.5)] text-base md:text-lg leading-relaxed mb-12">
-            패션 크리에이터의 의류를 수거부터 판매, 배송, 정산까지 대행하는 온라인 리커머스 플랫폼. <br></br>오프라인 플리마켓의 번거로움을 줄이고, 크리에이터의 옷을 더 쉽고 안전하게 만날 수 있습니다.
+            옷만 맡기면 수거부터 촬영, 판매, 배송, 정산까지 — ON-FLEA가 모두 대신합니다.<br />
+            크리에이터는 콘텐츠에, 팬은 쇼핑에만 집중하세요.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">

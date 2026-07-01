@@ -24,7 +24,7 @@ export default function SolutionSection() {
           Solution
         </p>
         <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] max-w-[768px] mb-16">
-          ON-FLEA는 판매의 번거로움과<br />구매의 장벽을 없앱니다.
+          크리에이터와 팬 모두에게<br />더 나은 경험을 만듭니다.
         </h2>
 
         <div className="grid md:grid-cols-3 gap-px bg-[rgba(12,12,12,0.08)]">
