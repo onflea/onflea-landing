@@ -9,10 +9,16 @@ const notoSansKR = Noto_Sans_KR({
   display: 'swap',
 })
 
+const siteUrl = 'https://onflea.kr'
+const siteTitle = 'ONFLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로'
+const siteDescription =
+  'ONFLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.'
+const ogImage = '/og.png'
+
 export const metadata: Metadata = {
-  title: 'ONFLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로',
-  description:
-    'ONFLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.',
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
   keywords: [
     '패션 크리에이터',
     '온라인 플리마켓',
@@ -23,22 +29,41 @@ export const metadata: Metadata = {
     '크리에이터 협찬',
   ],
   authors: [{ name: 'ONFLEA' }],
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
-    title: 'ONFLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로',
-    description:
-      'ONFLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.',
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName: 'ONFLEA',
     type: 'website',
     locale: 'ko_KR',
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: 'ONFLEA',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ONFLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로',
-    description:
-      'ONFLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.',
+    title: siteTitle,
+    description: siteDescription,
+    images: [ogImage],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
   },
 }
 
