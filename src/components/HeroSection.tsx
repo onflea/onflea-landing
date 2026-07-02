@@ -28,7 +28,7 @@ export default function HeroSection() {
 
           <h1 className="text-white text-5xl md:text-7xl lg:text-[88px] font-black leading-[1.08] tracking-[-0.025em] mb-8">
             크리에이터의<br />
-            <span className="italic">옷장 속 아이템</span>을,<br />
+            옷장 속 아이템을,<br />
             팬의 일상으로.
           </h1>
 

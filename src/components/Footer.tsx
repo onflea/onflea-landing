@@ -70,7 +70,7 @@ export default function Footer() {
         {/* 하단 구분선 + 카피라이트 */}
         <div className="mt-12 pt-6 border-t border-[rgba(255,255,255,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
           <p className="text-[11px] text-[rgba(255,255,255,0.35)]">
-            © 2025 ON-FLEA. All rights reserved.
+            © 2026 ON-FLEA. All rights reserved.
           </p>
           <p className="text-[11px] text-[rgba(255,255,255,0.25)]">
             Made with care by ON-FLEA
