@@ -71,7 +71,7 @@ export default function Navbar() {
             오픈 알림 받기
           </button>
           <button
-            className="bg-[#ff4d6d] text-[#0c0c0c] text-sm font-bold px-5 py-2.5 tracking-[1.8px] uppercase hover:bg-[#e8365a] transition-colors"
+            className="bg-[#0c0c0c] text-white text-sm font-bold px-5 py-2.5 tracking-[1.8px] uppercase hover:bg-[#333] transition-colors"
             onClick={openCreator}
           >
             입점 문의하기
@@ -107,7 +107,7 @@ export default function Navbar() {
           </button>
           <button
             onClick={() => { setMenuOpen(false); openCreator() }}
-            className="text-sm bg-[#ff4d6d] text-[#0c0c0c] font-bold px-5 py-3 text-center tracking-[1.8px] uppercase"
+            className="text-sm bg-[#0c0c0c] text-white font-bold px-5 py-3 text-center tracking-[1.8px] uppercase"
           >
             입점 문의하기
           </button>

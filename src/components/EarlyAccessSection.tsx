@@ -20,7 +20,7 @@ export default function EarlyAccessSection() {
         <div className="grid md:grid-cols-2 gap-px bg-[rgba(12,12,12,0.08)]">
           {/* 크리에이터 — 다크 */}
           <div className="bg-[#0c0c0c] p-12 md:p-14 flex flex-col">
-            <p className="text-[#ff4d6d] text-[10px] font-bold tracking-[2.5px] uppercase mb-4">크리에이터</p>
+            <p className="text-[rgba(255,255,255,0.5)] text-[10px] font-bold tracking-[2.5px] uppercase mb-4">크리에이터</p>
             <h3 className="text-white text-3xl font-black mb-4">입점 문의하기</h3>
             <p className="text-[rgba(255,255,255,0.5)] text-sm leading-relaxed max-w-[480px] mb-8">
               패션 콘텐츠를 만들고 있고, 협찬·리뷰·촬영 의류가 쌓이고 있다면 ON-FLEA가 판매 과정을 대신 도와드립니다.
@@ -28,7 +28,7 @@ export default function EarlyAccessSection() {
             <div className="mt-auto">
               <button
                 onClick={openCreator}
-                className="bg-[#ff4d6d] text-[#0c0c0c] text-[12px] font-bold tracking-[2.16px] uppercase px-8 py-4 inline-flex items-center gap-2 hover:bg-[#e8365a] transition-colors"
+                className="bg-white text-[#0c0c0c] text-[12px] font-bold tracking-[2.16px] uppercase px-8 py-4 inline-flex items-center gap-2 hover:bg-[#f5f5f5] transition-colors"
               >
                 입점 문의하기
                 <span className="text-sm">→</span>

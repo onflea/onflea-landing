@@ -15,11 +15,11 @@ export default function SustainabilitySection() {
         {/* 센터 라벨 */}
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-2">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" className="text-[#ff4d6d]">
-              <path d="M6.5 1C3.46 1 1 3.46 1 6.5S3.46 12 6.5 12 12 9.54 12 6.5 9.54 1 6.5 1z" stroke="#ff4d6d" strokeWidth="1.2"/>
-              <path d="M6.5 4v5M4 6.5h5" stroke="#ff4d6d" strokeWidth="1.2" strokeLinecap="round"/>
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M6.5 1C3.46 1 1 3.46 1 6.5S3.46 12 6.5 12 12 9.54 12 6.5 9.54 1 6.5 1z" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2"/>
+              <path d="M6.5 4v5M4 6.5h5" stroke="rgba(255,255,255,0.6)" strokeWidth="1.2" strokeLinecap="round"/>
             </svg>
-            <p className="text-[#ff4d6d] text-[10px] font-bold tracking-[2.5px] uppercase">
+            <p className="text-[rgba(255,255,255,0.6)] text-[10px] font-bold tracking-[2.5px] uppercase">
               Sustainability
             </p>
           </div>
@@ -37,8 +37,8 @@ export default function SustainabilitySection() {
 
         {/* 인용 박스 */}
         <div className="flex justify-center">
-          <div className="border border-[rgba(255,77,109,0.25)] px-8 py-7 max-w-[576px] w-full">
-            <p className="text-[#ff4d6d] text-lg font-black text-center leading-relaxed">
+          <div className="border border-[rgba(255,255,255,0.15)] px-8 py-7 max-w-[576px] w-full">
+            <p className="text-white text-lg font-black text-center leading-relaxed">
               &ldquo;ON-FLEA는 버려질 수 있는 옷을 다시 입히는<br />리커머스 경험을 만듭니다.&rdquo;
             </p>
           </div>

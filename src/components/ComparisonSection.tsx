@@ -47,13 +47,13 @@ export default function ComparisonSection() {
 
           {/* ON-FLEA */}
           <div className="bg-[#0c0c0c] p-10 md:p-14">
-            <p className="text-[10px] font-bold tracking-[2.5px] uppercase text-[#ff4d6d] mb-8">
+            <p className="text-[10px] font-bold tracking-[2.5px] uppercase text-white mb-8">
               ON-FLEA
             </p>
             <ul className="space-y-0 divide-y divide-[rgba(255,255,255,0.07)]">
               {after.map((item) => (
                 <li key={item} className="flex items-center gap-4 py-4">
-                  <span className="w-5 h-5 flex items-center justify-center shrink-0 text-[#ff4d6d] text-base font-bold">✓</span>
+                  <span className="w-5 h-5 flex items-center justify-center shrink-0 text-white text-base font-bold">✓</span>
                   <span className="text-sm text-[rgba(255,255,255,0.8)] font-medium">
                     {item}
                   </span>
@@ -66,7 +66,7 @@ export default function ComparisonSection() {
         {/* 하단 강조 문구 */}
         <div className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-t border-[rgba(12,12,12,0.08)] pt-10">
           <p className="text-2xl md:text-3xl font-black text-[#0c0c0c] leading-snug">
-            크리에이터는 <span className="text-[#ff4d6d]">옷만 문 앞에 두면</span> 됩니다.<br />
+            크리에이터는 <span className="underline decoration-2 underline-offset-4">옷만 문 앞에 두면</span> 됩니다.<br />
             나머지는 ON-FLEA가 모두 처리합니다.
           </p>
           <p className="text-sm text-[rgba(12,12,12,0.45)] leading-relaxed max-w-[320px] shrink-0">

@@ -36,7 +36,7 @@ export default function ProblemSection() {
             onMouseEnter={() => setFocused('creator')}
           >
             <p className={`text-[10px] font-bold tracking-[2.5px] uppercase mb-5 transition-colors duration-300 ${
-              focused === 'creator' ? 'text-[#ff4d6d]' : 'text-[rgba(12,12,12,0.35)]'
+              focused === 'creator' ? 'text-white' : 'text-[rgba(12,12,12,0.35)]'
             }`}>크리에이터</p>
             <p className={`text-base md:text-lg leading-relaxed mb-10 max-w-[480px] transition-colors duration-300 ${
               focused === 'creator' ? 'text-white' : 'text-[#0c0c0c]'
@@ -47,7 +47,7 @@ export default function ProblemSection() {
               {creatorProblems.map((item) => (
                 <li key={item} className="flex items-center gap-3">
                   <span className={`w-1 h-1 rounded-full shrink-0 transition-colors duration-300 ${
-                    focused === 'creator' ? 'bg-[#ff4d6d]' : 'bg-[rgba(12,12,12,0.4)]'
+                    focused === 'creator' ? 'bg-white' : 'bg-[rgba(12,12,12,0.4)]'
                   }`} />
                   <span className={`text-sm transition-colors duration-300 ${
                     focused === 'creator' ? 'text-[rgba(255,255,255,0.55)]' : 'text-[rgba(12,12,12,0.55)]'
@@ -65,7 +65,7 @@ export default function ProblemSection() {
             onMouseEnter={() => setFocused('buyer')}
           >
             <p className={`text-[10px] font-bold tracking-[2.5px] uppercase mb-5 transition-colors duration-300 ${
-              focused === 'buyer' ? 'text-[#ff4d6d]' : 'text-[rgba(12,12,12,0.35)]'
+              focused === 'buyer' ? 'text-white' : 'text-[rgba(12,12,12,0.35)]'
             }`}>팬 · 소비자</p>
             <p className={`text-base md:text-lg leading-relaxed mb-10 max-w-[480px] transition-colors duration-300 ${
               focused === 'buyer' ? 'text-white' : 'text-[#0c0c0c]'
@@ -76,7 +76,7 @@ export default function ProblemSection() {
               {buyerProblems.map((item) => (
                 <li key={item} className="flex items-center gap-3">
                   <span className={`w-1 h-1 rounded-full shrink-0 transition-colors duration-300 ${
-                    focused === 'buyer' ? 'bg-[#ff4d6d]' : 'bg-[rgba(12,12,12,0.4)]'
+                    focused === 'buyer' ? 'bg-white' : 'bg-[rgba(12,12,12,0.4)]'
                   }`} />
                   <span className={`text-sm transition-colors duration-300 ${
                     focused === 'buyer' ? 'text-[rgba(255,255,255,0.55)]' : 'text-[rgba(12,12,12,0.55)]'
