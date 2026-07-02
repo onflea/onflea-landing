@@ -50,7 +50,7 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
 
           {submitted ? (
             <div className="flex flex-col items-center text-center gap-4 py-6">
-              <div className="w-12 h-12 bg-[#ff4d6d] flex items-center justify-center">
+              <div className="w-12 h-12 bg-[#0c0c0c] flex items-center justify-center">
                 <span className="text-white text-xl font-bold">✓</span>
               </div>
               <p className="text-[#0c0c0c] font-bold text-lg">이메일이 열렸습니다.</p>
@@ -60,7 +60,7 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
               </p>
               <button
                 onClick={onClose}
-                className="mt-2 w-full bg-[#ff4d6d] text-white text-sm font-semibold py-4 hover:bg-[#e8365a] transition-colors"
+                className="mt-2 w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors"
               >
                 닫기
               </button>
@@ -73,7 +73,7 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
                   value={form.name}
                   onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                   placeholder="홍길동"
-                  className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#ff4d6d] transition-colors"
+                  className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#0c0c0c] transition-colors"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
@@ -84,7 +84,7 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
                   value={form.email}
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                   placeholder="hello@example.com"
-                  className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#ff4d6d] transition-colors"
+                  className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#0c0c0c] transition-colors"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
@@ -93,12 +93,12 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
                   value={form.channelUrl}
                   onChange={e => setForm(f => ({ ...f, channelUrl: e.target.value }))}
                   placeholder="유튜브, 인스타그램 등 채널 URL"
-                  className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#ff4d6d] transition-colors"
+                  className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#0c0c0c] transition-colors"
                 />
               </div>
               <button
                 type="submit"
-                className="mt-1 w-full bg-[#ff4d6d] text-[#0c0c0c] text-sm font-semibold py-4 hover:bg-[#e8365a] transition-colors"
+                className="mt-1 w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors"
               >
                 문의 보내기
               </button>
