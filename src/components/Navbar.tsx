@@ -36,9 +36,9 @@ export default function Navbar() {
           <Image
             src={scrolled || menuOpen ? '/images/logo-horizontal-black.png' : '/images/logo-horizontal-white.png'}
             alt="ON-FLEA"
-            width={130}
-            height={34}
-            className="h-8 w-auto"
+            width={1089}
+            height={190}
+            className="h-7 w-auto"
             priority
           />
         </a>

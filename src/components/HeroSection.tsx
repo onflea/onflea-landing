@@ -22,7 +22,7 @@ export default function HeroSection() {
           <div className="inline-flex items-center gap-2.5 border border-[rgba(255,77,109,0.4)] px-[15px] py-[9px] mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#ff4d6d] opacity-70 shrink-0" />
             <p className="text-[#ff4d6d] text-[10px] tracking-[2.5px] uppercase font-normal">
-              Online Recommerce Platform
+              Online Flea Market Platform
             </p>
           </div>
 
