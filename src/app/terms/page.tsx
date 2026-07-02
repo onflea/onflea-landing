@@ -77,7 +77,7 @@ const sections = [
   },
   {
     title: '부칙',
-    body: '본 약관은 2025년 1월 1일부터 시행합니다.',
+    body: '본 약관은 2026년 7월 1일부터 시행합니다.',
   },
 ]
 
@@ -94,7 +94,7 @@ export default function TermsPage() {
             이용약관
           </h1>
           <p className="text-sm text-[rgba(12,12,12,0.5)] mb-12">
-            시행일자: 2025년 1월 1일
+            시행일자: 2026년 7월 1일
           </p>
 
           <div className="space-y-10">

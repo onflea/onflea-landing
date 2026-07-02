@@ -56,7 +56,7 @@ const sections = [
   },
   {
     title: '8. 개정 이력',
-    body: '· 시행일자: 2025년 1월 1일',
+    body: '· 시행일자: 2026년 7월 1일',
   },
 ]
 
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
             개인정보처리방침
           </h1>
           <p className="text-sm text-[rgba(12,12,12,0.5)] mb-12">
-            시행일자: 2025년 1월 1일
+            시행일자: 2026년 7월 1일
           </p>
 
           <div className="space-y-10">

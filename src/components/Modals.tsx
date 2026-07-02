@@ -4,6 +4,31 @@ import { useState, useEffect } from 'react'
 import { X } from 'lucide-react'
 import { useModal } from '@/context/ModalContext'
 
+const STORAGE_KEYS = {
+  creator: 'onflea_creator_submitted',
+  buyer: 'onflea_buyer_submitted',
+} as const
+
+function readSubmission(key: string) {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = window.localStorage.getItem(key)
+    if (!raw) return null
+    return JSON.parse(raw) as { email: string; at: string }
+  } catch {
+    return null
+  }
+}
+
+function saveSubmission(key: string, email: string) {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.setItem(key, JSON.stringify({ email, at: new Date().toISOString() }))
+  } catch {
+    // ignore quota errors
+  }
+}
+
 function Overlay({ onClose }: { onClose: () => void }) {
   return (
     <div
@@ -13,23 +38,73 @@ function Overlay({ onClose }: { onClose: () => void }) {
   )
 }
 
+function AlreadySubmitted({
+  onClose,
+  title,
+  email,
+  buttonClass,
+}: {
+  onClose: () => void
+  title: string
+  email: string
+  buttonClass: string
+}) {
+  return (
+    <div className="flex flex-col items-center text-center gap-4 py-6">
+      <div className="w-12 h-12 bg-[#0c0c0c] flex items-center justify-center">
+        <span className="text-white text-xl font-bold">✓</span>
+      </div>
+      <p className="text-[#0c0c0c] font-bold text-lg">{title}</p>
+      <p className="text-[rgba(12,12,12,0.55)] text-sm leading-relaxed">
+        이미 <span className="text-[#0c0c0c] font-medium">{email}</span>로<br />
+        신청 내역이 접수되어 있어요.
+      </p>
+      <button
+        onClick={onClose}
+        className={`mt-2 w-full text-sm font-semibold py-4 transition-colors ${buttonClass}`}
+      >
+        닫기
+      </button>
+    </div>
+  )
+}
+
 function CreatorModal({ onClose }: { onClose: () => void }) {
   const [form, setForm] = useState({ name: '', email: '', channelUrl: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [previous, setPrevious] = useState<{ email: string; at: string } | null>(null)
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
+    setPrevious(readSubmission(STORAGE_KEYS.creator))
     return () => { document.body.style.overflow = '' }
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`[ON-FLEA 입점 문의] ${form.name}`)
-    const body = encodeURIComponent(
-      `이름: ${form.name}\n이메일: ${form.email}\n채널 링크: ${form.channelUrl}`
-    )
-    window.location.href = `mailto:contact@onflea.kr?subject=${subject}&body=${body}`
-    setSubmitted(true)
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch('https://formspree.io/f/mqevgzoq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          channelUrl: form.channelUrl,
+          source: 'ON-FLEA 입점 문의',
+        }),
+      })
+      if (!res.ok) throw new Error('submit-failed')
+      saveSubmission(STORAGE_KEYS.creator, form.email)
+      setSubmitted(true)
+    } catch {
+      setError('전송에 실패했어요. 잠시 후 다시 시도해 주세요.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -48,14 +123,21 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
           <h2 className="text-[#0c0c0c] text-[28px] font-bold mb-2">입점 문의하기</h2>
           <p className="text-[rgba(12,12,12,0.5)] text-sm mb-8">정보를 남겨주시면 ON-FLEA 팀이 직접 연락드립니다.</p>
 
-          {submitted ? (
+          {previous && !submitted ? (
+            <AlreadySubmitted
+              onClose={onClose}
+              title="이미 문의하셨어요."
+              email={previous.email}
+              buttonClass="bg-[#0c0c0c] text-white hover:bg-[#333]"
+            />
+          ) : submitted ? (
             <div className="flex flex-col items-center text-center gap-4 py-6">
               <div className="w-12 h-12 bg-[#0c0c0c] flex items-center justify-center">
                 <span className="text-white text-xl font-bold">✓</span>
               </div>
-              <p className="text-[#0c0c0c] font-bold text-lg">이메일이 열렸습니다.</p>
+              <p className="text-[#0c0c0c] font-bold text-lg">문의가 접수되었습니다.</p>
               <p className="text-[rgba(12,12,12,0.55)] text-sm leading-relaxed">
-                이메일 앱에서 내용을 확인하고 전송해 주세요.<br />
+                ON-FLEA 팀이 확인 후<br />
                 빠른 시일 내에 연락드리겠습니다.
               </p>
               <button
@@ -96,11 +178,15 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
                   className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#0c0c0c] transition-colors"
                 />
               </div>
+              {error && (
+                <p className="text-[13px] text-red-600 -mb-1">{error}</p>
+              )}
               <button
                 type="submit"
-                className="mt-1 w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors"
+                disabled={loading}
+                className="mt-1 w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                문의 보내기
+                {loading ? '전송 중...' : '문의 보내기'}
               </button>
             </form>
           )}
@@ -114,15 +200,34 @@ function BuyerModal({ onClose }: { onClose: () => void }) {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [previous, setPrevious] = useState<{ email: string; at: string } | null>(null)
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
+    setPrevious(readSubmission(STORAGE_KEYS.buyer))
     return () => { document.body.style.overflow = '' }
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch('https://formspree.io/f/meebpjwr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ name, email, source: 'ON-FLEA 오픈 알림' }),
+      })
+      if (!res.ok) throw new Error('submit-failed')
+      saveSubmission(STORAGE_KEYS.buyer, email)
+      setSubmitted(true)
+    } catch {
+      setError('전송에 실패했어요. 잠시 후 다시 시도해 주세요.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -141,7 +246,14 @@ function BuyerModal({ onClose }: { onClose: () => void }) {
           <h2 className="text-[#0c0c0c] text-[28px] font-bold mb-2">오픈 알림 받기</h2>
           <p className="text-[rgba(12,12,12,0.5)] text-sm mb-8">좋아하는 크리에이터의 옷을 가장 먼저 만나보고 싶다면 이메일을 남겨주세요.</p>
 
-          {submitted ? (
+          {previous && !submitted ? (
+            <AlreadySubmitted
+              onClose={onClose}
+              title="이미 신청하셨어요."
+              email={previous.email}
+              buttonClass="bg-[#0c0c0c] text-white hover:bg-[#333]"
+            />
+          ) : submitted ? (
             <div className="flex flex-col items-center text-center gap-4 py-6">
               <div className="w-12 h-12 bg-[#0c0c0c] flex items-center justify-center">
                 <span className="text-white text-xl font-bold">✓</span>
@@ -180,11 +292,15 @@ function BuyerModal({ onClose }: { onClose: () => void }) {
                   className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#0c0c0c] transition-colors"
                 />
               </div>
+              {error && (
+                <p className="text-[13px] text-red-600 -mb-1">{error}</p>
+              )}
               <button
                 type="submit"
-                className="mt-1 w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors"
+                disabled={loading}
+                className="mt-1 w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                알림 신청하기
+                {loading ? '전송 중...' : '알림 신청하기'}
               </button>
             </form>
           )}
