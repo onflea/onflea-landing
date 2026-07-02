@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, ArrowUpRight } from 'lucide-react'
 
 const faqs = [
   {
@@ -33,14 +33,52 @@ export default function FAQSection() {
     <section id="faq" className="bg-white py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-[352px_1fr] gap-16 md:gap-24">
-          {/* 왼쪽 — 타이틀 */}
-          <div>
+          {/* 왼쪽 — 타이틀 + 문의 안내 */}
+          <div className="flex flex-col">
             <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-4">
               FAQ
             </p>
             <h2 className="text-[36px] font-black leading-[1.1] text-[#0c0c0c]">
               자주 묻는<br />질문
             </h2>
+
+            {/* 추가 문의 안내 */}
+            <div className="mt-10 md:mt-auto p-7 bg-[#f5f5f5]">
+              <p className="text-[15px] font-bold text-[#0c0c0c] mb-2">
+                찾으시는 답변이 없나요?
+              </p>
+              <p className="text-sm text-[rgba(12,12,12,0.55)] leading-relaxed mb-6">
+                무엇이든 편하게 문의 주세요.<br />빠르게 답변드리겠습니다.
+              </p>
+              <div className="flex flex-col gap-1">
+                <a
+                  href="mailto:contact@onflea.kr"
+                  className="flex items-center gap-3 py-1 hover:opacity-60 transition-opacity"
+                >
+                  <span className="text-[11px] font-bold tracking-[2px] uppercase text-[rgba(12,12,12,0.45)] shrink-0">
+                    Email
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-[#0c0c0c] truncate">
+                    contact@onflea.kr
+                    <ArrowUpRight size={14} strokeWidth={2.5} className="shrink-0" />
+                  </span>
+                </a>
+                <a
+                  href="https://www.instagram.com/onflea.official/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 py-1 hover:opacity-60 transition-opacity"
+                >
+                  <span className="text-[11px] font-bold tracking-[2px] uppercase text-[rgba(12,12,12,0.45)] shrink-0">
+                    Instagram
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-[#0c0c0c] truncate">
+                    @onflea.official
+                    <ArrowUpRight size={14} strokeWidth={2.5} className="shrink-0" />
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* 오른쪽 — 아코디언 */}

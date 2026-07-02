@@ -30,14 +30,14 @@ export default function ComparisonSection() {
         <div className="grid md:grid-cols-2 gap-px bg-[rgba(12,12,12,0.08)]">
           {/* 기존 방식 */}
           <div className="bg-[#f5f5f5] p-10 md:p-14">
-            <p className="text-[10px] font-bold tracking-[2.5px] uppercase text-[rgba(12,12,12,0.3)] mb-8">
+            <p className="text-[10px] font-bold tracking-[2.5px] uppercase text-[rgba(12,12,12,0.55)] mb-8">
               기존 직접 판매
             </p>
-            <ul className="space-y-0 divide-y divide-[rgba(12,12,12,0.07)]">
+            <ul className="space-y-0 divide-y divide-[rgba(12,12,12,0.1)]">
               {before.map((item) => (
                 <li key={item} className="flex items-center gap-4 py-4">
-                  <span className="w-5 h-5 flex items-center justify-center shrink-0 text-[rgba(12,12,12,0.2)] text-lg font-bold">✕</span>
-                  <span className="text-sm text-[rgba(12,12,12,0.35)] line-through decoration-[rgba(12,12,12,0.2)]">
+                  <span className="w-5 h-5 flex items-center justify-center shrink-0 text-[rgba(12,12,12,0.4)] text-lg font-bold">✕</span>
+                  <span className="text-base font-medium text-[rgba(12,12,12,0.65)] line-through decoration-[rgba(12,12,12,0.35)]">
                     {item}
                   </span>
                 </li>
@@ -50,11 +50,11 @@ export default function ComparisonSection() {
             <p className="text-[10px] font-bold tracking-[2.5px] uppercase text-white mb-8">
               ONFLEA
             </p>
-            <ul className="space-y-0 divide-y divide-[rgba(255,255,255,0.07)]">
+            <ul className="space-y-0 divide-y divide-[rgba(255,255,255,0.1)]">
               {after.map((item) => (
                 <li key={item} className="flex items-center gap-4 py-4">
                   <span className="w-5 h-5 flex items-center justify-center shrink-0 text-white text-base font-bold">✓</span>
-                  <span className="text-sm text-[rgba(255,255,255,0.8)] font-medium">
+                  <span className="text-base font-medium text-white">
                     {item}
                   </span>
                 </li>
