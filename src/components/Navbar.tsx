@@ -32,10 +32,10 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
-        <a href="#hero" aria-label="ON-FLEA 홈">
+        <a href="#hero" aria-label="ONFLEA 홈">
           <Image
             src={scrolled || menuOpen ? '/images/logo-horizontal-black.png' : '/images/logo-horizontal-white.png'}
-            alt="ON-FLEA"
+            alt="ONFLEA"
             width={1089}
             height={190}
             className="h-7 w-auto"

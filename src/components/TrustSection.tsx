@@ -34,7 +34,7 @@ export default function TrustSection() {
           믿고 구매할 수 있도록, 필요한 정보를 투명하게 제공합니다.
         </h2>
         <p className="text-base text-[rgba(12,12,12,0.55)] leading-relaxed max-w-[576px] mb-16">
-          중고 의류 구매에서 가장 중요한 것은 정보와 신뢰입니다. ON-FLEA는 상품 상태, 실측, 가격, 배송 정보를 정리해 구매자가 더 쉽게 판단할 수 있도록 돕습니다.
+          중고 의류 구매에서 가장 중요한 것은 정보와 신뢰입니다. ONFLEA는 상품 상태, 실측, 가격, 배송 정보를 정리해 구매자가 더 쉽게 판단할 수 있도록 돕습니다.
         </p>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-px bg-[rgba(12,12,12,0.08)]">

@@ -39,7 +39,7 @@ export default function SustainabilitySection() {
         <div className="flex justify-center">
           <div className="border border-[rgba(255,255,255,0.15)] px-8 py-7 max-w-[576px] w-full">
             <p className="text-white text-lg font-black text-center leading-relaxed">
-              &ldquo;ON-FLEA는 버려질 수 있는 옷을 다시 입히는<br />리커머스 경험을 만듭니다.&rdquo;
+              &ldquo;ONFLEA는 버려질 수 있는 옷을 다시 입히는<br />리커머스 경험을 만듭니다.&rdquo;
             </p>
           </div>
         </div>

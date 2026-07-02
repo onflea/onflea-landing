@@ -32,7 +32,7 @@ export default function Footer() {
           <div className="flex flex-col items-start gap-3">
             <Image
               src="/images/logo-horizontal-white.png"
-              alt="ON-FLEA"
+              alt="ONFLEA"
               width={1089}
               height={190}
               className="h-5 w-auto"
@@ -70,10 +70,10 @@ export default function Footer() {
         {/* 하단 구분선 + 카피라이트 */}
         <div className="mt-12 pt-6 border-t border-[rgba(255,255,255,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
           <p className="text-[11px] text-[rgba(255,255,255,0.35)]">
-            © 2026 ON-FLEA. All rights reserved.
+            © 2026 ONFLEA. All rights reserved.
           </p>
           <p className="text-[11px] text-[rgba(255,255,255,0.25)]">
-            Made with care by ON-FLEA
+            Made with care by ONFLEA
           </p>
         </div>
       </div>

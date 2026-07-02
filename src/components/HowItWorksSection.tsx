@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { FileText, Truck, Camera, Globe, BarChart2, Search, CreditCard, Package } from 'lucide-react'
 
 const creatorSteps = [
-  { num: '01', title: '입점 문의',         desc: '간단한 입점 신청서를 작성하면 ON-FLEA 팀이 검토 후 연락드립니다.', icon: FileText },
-  { num: '02', title: '문 앞 수거',         desc: '판매할 의류를 문 앞에 두시면 ON-FLEA가 직접 방문해 수거합니다.', icon: Truck },
+  { num: '01', title: '입점 문의',         desc: '간단한 입점 신청서를 작성하면 ONFLEA 팀이 검토 후 연락드립니다.', icon: FileText },
+  { num: '02', title: '문 앞 수거',         desc: '판매할 의류를 문 앞에 두시면 ONFLEA가 직접 방문해 수거합니다.', icon: Truck },
   { num: '03', title: '촬영 · 검수 · 등록', desc: '수거한 의류를 촬영하고 상태를 꼼꼼히 검수한 후 상품 페이지에 등록합니다.', icon: Camera },
   { num: '04', title: '페이지 오픈',        desc: '크리에이터 전용 판매 페이지가 열리고 팬들이 상품을 구매합니다.', icon: Globe },
   { num: '05', title: '판매 후 정산',       desc: '판매 완료 후 결과 리포트와 함께 정산이 이루어집니다.', icon: BarChart2 },
@@ -31,7 +31,7 @@ export default function HowItWorksSection() {
               How It Works
             </p>
             <h2 className="text-4xl md:text-[56px] font-black leading-[1.5] text-[#0c0c0c]">
-              ON-FLEA 이용 방법
+              ONFLEA 이용 방법
             </h2>
           </div>
 
@@ -57,7 +57,11 @@ export default function HowItWorksSection() {
           </div>
         </div>
 
-        <div className="grid gap-px bg-[rgba(12,12,12,0.08)]" style={{ gridTemplateColumns: `repeat(${steps.length}, 1fr)` }}>
+        <div
+          className={`grid gap-px bg-[rgba(12,12,12,0.08)] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${
+            activeTab === 'creator' ? 'lg:grid-cols-5' : 'lg:grid-cols-4'
+          }`}
+        >
           {steps.map((s) => {
             const Icon = s.icon
             return (

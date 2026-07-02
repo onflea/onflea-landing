@@ -13,7 +13,7 @@ export default function EarlyAccessSection() {
             Get Started
           </p>
           <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] text-center max-w-[672px]">
-            ON-FLEA와 함께 첫 번째<br />온라인 플리마켓을 시작해보세요.
+            ONFLEA와 함께 첫 번째<br />온라인 플리마켓을 시작해보세요.
           </h2>
         </div>
 
@@ -23,7 +23,7 @@ export default function EarlyAccessSection() {
             <p className="text-[rgba(255,255,255,0.5)] text-[10px] font-bold tracking-[2.5px] uppercase mb-4">크리에이터</p>
             <h3 className="text-white text-3xl font-black mb-4">입점 문의하기</h3>
             <p className="text-[rgba(255,255,255,0.5)] text-sm leading-relaxed max-w-[480px] mb-8">
-              패션 콘텐츠를 만들고 있고, 협찬·리뷰·촬영 의류가 쌓이고 있다면 ON-FLEA가 판매 과정을 대신 도와드립니다.
+              패션 콘텐츠를 만들고 있고, 협찬·리뷰·촬영 의류가 쌓이고 있다면 ONFLEA가 판매 과정을 대신 도와드립니다.
             </p>
             <div className="mt-auto">
               <button

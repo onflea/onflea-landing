@@ -43,11 +43,11 @@ export default function ForBuyerSection() {
               좋아하는 크리에이터의 옷을, 이제 온라인으로 만나보세요.
             </h2>
             <p className="text-[rgba(12,12,12,0.55)] text-base leading-relaxed max-w-[384px] mb-8">
-              이제 특정 장소와 시간에 열리는 플리마켓을 기다리지 않아도 됩니다. ON-FLEA에서는 크리에이터가 실제 착용했거나 소개한 의류를 온라인으로 확인하고 구매할 수 있습니다.
+              이제 특정 장소와 시간에 열리는 플리마켓을 기다리지 않아도 됩니다. ONFLEA에서는 크리에이터가 실제 착용했거나 소개한 의류를 온라인으로 확인하고 구매할 수 있습니다.
             </p>
             <div className="border-l-4 border-[#0c0c0c] pl-6 mb-10">
               <p className="text-[#0c0c0c] text-lg font-black leading-relaxed">
-                플리마켓을 놓쳤다면,<br />ON-FLEA에서 다시 만나요.
+                플리마켓을 놓쳤다면,<br />ONFLEA에서 다시 만나요.
               </p>
             </div>
             <button

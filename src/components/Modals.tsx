@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { X } from 'lucide-react'
+import Link from 'next/link'
 import { useModal } from '@/context/ModalContext'
 
 const STORAGE_KEYS = {
@@ -27,6 +28,51 @@ function saveSubmission(key: string, email: string) {
   } catch {
     // ignore quota errors
   }
+}
+
+function ConsentCheckbox({
+  checked,
+  onChange,
+  required = false,
+  label,
+  href,
+}: {
+  checked: boolean
+  onChange: (v: boolean) => void
+  required?: boolean
+  label: string
+  href?: string
+}) {
+  return (
+    <label className="flex items-start gap-2.5 cursor-pointer select-none">
+      <input
+        type="checkbox"
+        required={required}
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="mt-[3px] size-4 accent-[#0c0c0c] cursor-pointer shrink-0"
+      />
+      <span className="text-[13px] text-[rgba(12,12,12,0.65)] leading-relaxed">
+        <span className="text-[#0c0c0c] font-semibold">
+          {required ? '[필수]' : '[선택]'}
+        </span>{' '}
+        {label}
+        {href && (
+          <>
+            {' '}
+            <Link
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-[#0c0c0c]"
+            >
+              자세히 보기
+            </Link>
+          </>
+        )}
+      </span>
+    </label>
+  )
 }
 
 function Overlay({ onClose }: { onClose: () => void }) {
@@ -75,6 +121,8 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [previous, setPrevious] = useState<{ email: string; at: string } | null>(null)
+  const [agreed, setAgreed] = useState(false)
+  const [marketingAgreed, setMarketingAgreed] = useState(false)
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -94,7 +142,10 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
           name: form.name,
           email: form.email,
           channelUrl: form.channelUrl,
-          source: 'ON-FLEA 입점 문의',
+          source: 'ONFLEA 입점 문의',
+          privacyConsent: true,
+          marketingConsent: marketingAgreed,
+          consentedAt: new Date().toISOString(),
         }),
       })
       if (!res.ok) throw new Error('submit-failed')
@@ -121,7 +172,7 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
         <div className="px-8 pt-10 pb-8">
           <p className="text-[rgba(12,12,12,0.4)] text-[11px] font-semibold tracking-[2.5px] uppercase mb-2">For Creator</p>
           <h2 className="text-[#0c0c0c] text-[28px] font-bold mb-2">입점 문의하기</h2>
-          <p className="text-[rgba(12,12,12,0.5)] text-sm mb-8">정보를 남겨주시면 ON-FLEA 팀이 직접 연락드립니다.</p>
+          <p className="text-[rgba(12,12,12,0.5)] text-sm mb-8">정보를 남겨주시면 ONFLEA 팀이 직접 연락드립니다.</p>
 
           {previous && !submitted ? (
             <AlreadySubmitted
@@ -137,7 +188,7 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
               </div>
               <p className="text-[#0c0c0c] font-bold text-lg">문의가 접수되었습니다.</p>
               <p className="text-[rgba(12,12,12,0.55)] text-sm leading-relaxed">
-                ON-FLEA 팀이 확인 후<br />
+                ONFLEA 팀이 확인 후<br />
                 빠른 시일 내에 연락드리겠습니다.
               </p>
               <button
@@ -178,13 +229,27 @@ function CreatorModal({ onClose }: { onClose: () => void }) {
                   className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#0c0c0c] transition-colors"
                 />
               </div>
+              <div className="mt-1 pt-4 border-t border-[rgba(12,12,12,0.08)] flex flex-col gap-2.5">
+                <ConsentCheckbox
+                  checked={agreed}
+                  onChange={setAgreed}
+                  required
+                  label="개인정보 수집 및 이용에 동의합니다."
+                  href="/privacy"
+                />
+                <ConsentCheckbox
+                  checked={marketingAgreed}
+                  onChange={setMarketingAgreed}
+                  label="이벤트·프로모션 정보 수신에 동의합니다."
+                />
+              </div>
               {error && (
                 <p className="text-[13px] text-red-600 -mb-1">{error}</p>
               )}
               <button
                 type="submit"
-                disabled={loading}
-                className="mt-1 w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={loading || !agreed}
+                className="w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {loading ? '전송 중...' : '문의 보내기'}
               </button>
@@ -203,6 +268,8 @@ function BuyerModal({ onClose }: { onClose: () => void }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [previous, setPrevious] = useState<{ email: string; at: string } | null>(null)
+  const [agreed, setAgreed] = useState(false)
+  const [marketingAgreed, setMarketingAgreed] = useState(false)
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -218,7 +285,14 @@ function BuyerModal({ onClose }: { onClose: () => void }) {
       const res = await fetch('https://formspree.io/f/meebpjwr', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ name, email, source: 'ON-FLEA 오픈 알림' }),
+        body: JSON.stringify({
+          name,
+          email,
+          source: 'ONFLEA 오픈 알림',
+          privacyConsent: true,
+          marketingConsent: marketingAgreed,
+          consentedAt: new Date().toISOString(),
+        }),
       })
       if (!res.ok) throw new Error('submit-failed')
       saveSubmission(STORAGE_KEYS.buyer, email)
@@ -292,13 +366,27 @@ function BuyerModal({ onClose }: { onClose: () => void }) {
                   className="bg-[#f5f5f5] border border-transparent text-[#0c0c0c] text-sm px-4 py-3.5 placeholder-[rgba(12,12,12,0.3)] focus:outline-none focus:border-[#0c0c0c] transition-colors"
                 />
               </div>
+              <div className="mt-1 pt-4 border-t border-[rgba(12,12,12,0.08)] flex flex-col gap-2.5">
+                <ConsentCheckbox
+                  checked={agreed}
+                  onChange={setAgreed}
+                  required
+                  label="개인정보 수집 및 이용에 동의합니다."
+                  href="/privacy"
+                />
+                <ConsentCheckbox
+                  checked={marketingAgreed}
+                  onChange={setMarketingAgreed}
+                  label="이벤트·프로모션 정보 수신에 동의합니다."
+                />
+              </div>
               {error && (
                 <p className="text-[13px] text-red-600 -mb-1">{error}</p>
               )}
               <button
                 type="submit"
-                disabled={loading}
-                className="mt-1 w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={loading || !agreed}
+                className="w-full bg-[#0c0c0c] text-white text-sm font-semibold py-4 hover:bg-[#333] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {loading ? '전송 중...' : '알림 신청하기'}
               </button>

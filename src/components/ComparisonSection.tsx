@@ -21,7 +21,7 @@ export default function ComparisonSection() {
     <section className="bg-white py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
         <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
-          Why ON-FLEA
+          Why ONFLEA
         </p>
         <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] mb-16">
           기존 방식과 무엇이<br />다른가요?
@@ -45,10 +45,10 @@ export default function ComparisonSection() {
             </ul>
           </div>
 
-          {/* ON-FLEA */}
+          {/* ONFLEA */}
           <div className="bg-[#0c0c0c] p-10 md:p-14">
             <p className="text-[10px] font-bold tracking-[2.5px] uppercase text-white mb-8">
-              ON-FLEA
+              ONFLEA
             </p>
             <ul className="space-y-0 divide-y divide-[rgba(255,255,255,0.07)]">
               {after.map((item) => (
@@ -67,10 +67,10 @@ export default function ComparisonSection() {
         <div className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-t border-[rgba(12,12,12,0.08)] pt-10">
           <p className="text-2xl md:text-3xl font-black text-[#0c0c0c] leading-snug">
             크리에이터는 <span className="underline decoration-2 underline-offset-4">옷만 문 앞에 두면</span> 됩니다.<br />
-            나머지는 ON-FLEA가 모두 처리합니다.
+            나머지는 ONFLEA가 모두 처리합니다.
           </p>
           <p className="text-sm text-[rgba(12,12,12,0.45)] leading-relaxed max-w-[320px] shrink-0">
-            개인 중고거래나 오프라인 플리마켓에서 직접 챙겨야 했던 모든 과정을 ON-FLEA가 대신합니다.
+            개인 중고거래나 오프라인 플리마켓에서 직접 챙겨야 했던 모든 과정을 ONFLEA가 대신합니다.
           </p>
         </div>
       </div>

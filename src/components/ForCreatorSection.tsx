@@ -25,7 +25,7 @@ export default function ForCreatorSection() {
               옷장에 쌓인<br />협찬·리뷰 의류,<br />이제 쉽게 판매하세요.
             </h2>
             <p className="text-[rgba(255,255,255,0.5)] text-base leading-relaxed mb-8">
-              콘텐츠 촬영 후 남은 의류를 직접 중고거래로 판매하는 일은 생각보다 어렵습니다.<br />ON-FLEA는 상품화부터 배송과 정산까지 전 과정을 대신 처리합니다.
+              콘텐츠 촬영 후 남은 의류를 직접 중고거래로 판매하는 일은 생각보다 어렵습니다.<br />ONFLEA는 상품화부터 배송과 정산까지 전 과정을 대신 처리합니다.
             </p>
             <div className="mb-8">
               <div className="border-l-4 border-white pl-5">

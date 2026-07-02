@@ -33,7 +33,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-[rgba(255,255,255,0.5)] text-base md:text-lg leading-relaxed mb-12">
-            옷만 맡기면 수거부터 촬영, 판매, 배송, 정산까지 — ON-FLEA가 모두 대신합니다.<br />
+            옷만 맡기면 수거부터 촬영, 판매, 배송, 정산까지 — ONFLEA가 모두 대신합니다.<br />
             크리에이터는 콘텐츠에, 팬은 쇼핑에만 집중하세요.
           </p>
 

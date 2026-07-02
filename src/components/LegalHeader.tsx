@@ -6,10 +6,10 @@ export default function LegalHeader() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[rgba(12,12,12,0.1)]">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
-        <Link href="/" aria-label="ON-FLEA 홈">
+        <Link href="/" aria-label="ONFLEA 홈">
           <Image
             src="/images/logo-horizontal-black.png"
-            alt="ON-FLEA"
+            alt="ONFLEA"
             width={1089}
             height={190}
             className="h-7 w-auto"

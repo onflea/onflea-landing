@@ -10,31 +10,31 @@ const notoSansKR = Noto_Sans_KR({
 })
 
 export const metadata: Metadata = {
-  title: 'ON-FLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로',
+  title: 'ONFLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로',
   description:
-    'ON-FLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.',
+    'ONFLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.',
   keywords: [
     '패션 크리에이터',
     '온라인 플리마켓',
     '리커머스',
     '의류 위탁 판매',
-    'ON-FLEA',
+    'ONFLEA',
     '중고 의류',
     '크리에이터 협찬',
   ],
-  authors: [{ name: 'ON-FLEA' }],
+  authors: [{ name: 'ONFLEA' }],
   openGraph: {
-    title: 'ON-FLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로',
+    title: 'ONFLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로',
     description:
-      'ON-FLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.',
+      'ONFLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.',
     type: 'website',
     locale: 'ko_KR',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ON-FLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로',
+    title: 'ONFLEA | 크리에이터의 옷장 속 아이템을, 팬의 일상으로',
     description:
-      'ON-FLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.',
+      'ONFLEA는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.',
   },
   robots: {
     index: true,
