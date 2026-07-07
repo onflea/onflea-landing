@@ -32,12 +32,12 @@ export default function Footer() {
           <div className="flex flex-col items-start gap-3">
             <Image
               src="/images/logo-horizontal-white.png"
-              alt="ONFLEA"
+              alt="ONFLEA(온플리)"
               width={1089}
               height={190}
               className="h-5 w-auto"
             />
-            <p className="text-[12px] text-[rgba(255,255,255,0.35)]">온라인 플리마켓 플랫폼</p>
+            <p className="text-[12px] text-[rgba(255,255,255,0.35)]">ONFLEA(온플리) · 온라인 플리마켓 플랫폼</p>
             <p className="text-[12px] text-[rgba(255,255,255,0.3)] mt-1 leading-relaxed">
               문의: contact@onflea.kr
             </p>

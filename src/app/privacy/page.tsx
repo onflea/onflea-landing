@@ -2,8 +2,8 @@ import LegalHeader from '@/components/LegalHeader'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: '개인정보처리방침 | ONFLEA',
-  description: 'ONFLEA의 개인정보처리방침입니다.',
+  title: '개인정보처리방침 | ONFLEA(온플리)',
+  description: 'ONFLEA(온플리)의 개인정보처리방침입니다.',
 }
 
 const sections = [
