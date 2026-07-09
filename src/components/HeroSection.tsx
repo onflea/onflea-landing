@@ -1,9 +1,12 @@
 'use client'
 
+import { preload } from 'react-dom'
 import { useModal } from '@/context/ModalContext'
 
 export default function HeroSection() {
   const { openCreator, openBuyer } = useModal()
+  // CSS background-image는 preload되지 않으므로 명시적으로 미리 로드 (LCP 개선)
+  preload('/images/hero-bg.jpg', { as: 'image' })
 
   return (
     <section id="hero" className="sticky top-0 z-0 bg-[#0c0c0c] min-h-screen flex flex-col overflow-hidden">

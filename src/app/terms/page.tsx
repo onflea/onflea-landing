@@ -4,6 +4,9 @@ import Footer from '@/components/Footer'
 export const metadata = {
   title: '이용약관 | ONFLEA(온플리)',
   description: 'ONFLEA(온플리) 서비스 이용약관입니다.',
+  alternates: {
+    canonical: '/terms',
+  },
 }
 
 const sections = [

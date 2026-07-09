@@ -30,11 +30,28 @@ const faqs = [
   },
 ]
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.a,
+    },
+  })),
+}
+
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
     <section id="faq" className="bg-white py-24 md:py-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-[352px_1fr] gap-16 md:gap-24">
           {/* 왼쪽 — 타이틀 + 문의 안내 */}

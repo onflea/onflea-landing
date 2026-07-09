@@ -15,7 +15,7 @@ const siteUrl = 'https://onflea.kr'
 const siteTitle = 'ONFLEA(온플리) | 크리에이터의 옷장 속 아이템을, 팬의 일상으로'
 const siteDescription =
   'ONFLEA(온플리)는 패션 크리에이터의 협찬·리뷰·촬영 의류를 수거해 촬영, 검수, 판매, 배송, CS, 정산까지 대행하는 온라인 플리마켓 플랫폼입니다.'
-const ogImage = '/og.png'
+const ogImage = '/og.jpg'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -59,6 +59,10 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     images: [ogImage],
+  },
+  // 구글은 DNS TXT 레코드로 인증 완료 (메타태그 불필요)
+  verification: {
+    other: { 'naver-site-verification': '4aa93e437b255b7a02a29867a72bfb62e0b250bc' },
   },
   robots: {
     index: true,
