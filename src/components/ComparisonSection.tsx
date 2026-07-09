@@ -20,14 +20,14 @@ export default function ComparisonSection() {
   return (
     <section className="bg-white py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
+        <p data-reveal className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
           Why ONFLEA
         </p>
-        <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] mb-16">
+        <h2 data-reveal style={{ '--reveal-delay': '80ms' } as React.CSSProperties} className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] mb-16">
           기존 방식과 무엇이<br />다른가요?
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-px bg-[rgba(12,12,12,0.08)]">
+        <div data-reveal className="grid md:grid-cols-2 gap-px bg-[rgba(12,12,12,0.08)]">
           {/* 기존 방식 */}
           <div className="bg-[#f5f5f5] p-10 md:p-14">
             <p className="text-[10px] font-bold tracking-[2.5px] uppercase text-[rgba(12,12,12,0.55)] mb-8">
@@ -64,7 +64,7 @@ export default function ComparisonSection() {
         </div>
 
         {/* 하단 강조 문구 */}
-        <div className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-t border-[rgba(12,12,12,0.08)] pt-10">
+        <div data-reveal className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-t border-[rgba(12,12,12,0.08)] pt-10">
           <p className="text-2xl md:text-3xl font-black text-[#0c0c0c] leading-snug">
             크리에이터는 <span className="underline decoration-2 underline-offset-4">옷만 문 앞에 두면</span> 됩니다.<br />
             나머지는 ONFLEA가 모두 처리합니다.

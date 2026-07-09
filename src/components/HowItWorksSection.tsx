@@ -25,7 +25,7 @@ export default function HowItWorksSection() {
   return (
     <section id="how-it-works" className="bg-white py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div data-reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div>
             <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
               How It Works
@@ -58,6 +58,8 @@ export default function HowItWorksSection() {
         </div>
 
         <div
+          data-reveal
+          style={{ '--reveal-delay': '100ms' } as React.CSSProperties}
           className={`grid gap-px bg-[rgba(12,12,12,0.08)] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${
             activeTab === 'creator' ? 'lg:grid-cols-5' : 'lg:grid-cols-4'
           }`}

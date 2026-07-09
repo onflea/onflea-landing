@@ -8,16 +8,16 @@ export default function EarlyAccessSection() {
   return (
     <section id="early-access" className="bg-[#f5f5f5] py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        <div className="flex flex-col items-center mb-16">
+        <div data-reveal className="flex flex-col items-center mb-16">
           <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5 text-center">
             Get Started
           </p>
-          <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] text-center max-w-[672px]">
-            ONFLEA와 함께 첫 번째<br />온라인 플리마켓을 시작해보세요.
+          <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] text-center">
+            ONFLEA와 함께 첫 번째 <br className="hidden md:block" />온라인 플리마켓을 시작해보세요.
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-px bg-[rgba(12,12,12,0.08)]">
+        <div data-reveal style={{ '--reveal-delay': '100ms' } as React.CSSProperties} className="grid md:grid-cols-2 gap-px bg-[rgba(12,12,12,0.08)]">
           {/* 크리에이터 — 다크 */}
           <div className="bg-[#0c0c0c] p-12 md:p-14 flex flex-col">
             <p className="text-[rgba(255,255,255,0.5)] text-[10px] font-bold tracking-[2.5px] uppercase mb-4">크리에이터</p>

@@ -17,9 +17,9 @@ export default function ForCreatorSection() {
   return (
     <section id="creator" className="bg-[#0c0c0c] py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        <div className="grid md:grid-cols-2 gap-16 md:gap-24">
+        <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
           {/* 왼쪽 — 텍스트 */}
-          <div className="flex flex-col">
+          <div data-reveal className="flex flex-col">
             <p className="text-[rgba(255,255,255,0.5)] text-[10px] font-bold tracking-[3px] uppercase mb-5">For Creator</p>
             <h2 className="text-white text-4xl md:text-[56px] font-black leading-[1.25] mb-6">
               옷장에 쌓인<br />협찬·리뷰 의류,<br />이제 쉽게 판매하세요.
@@ -30,6 +30,9 @@ export default function ForCreatorSection() {
             <div className="mb-8">
               <div className="border-l-4 border-white pl-5">
                 <p className="text-white text-xl font-black">&ldquo;옷만 문앞에 두세요.<br />나머지는 저희가 대신 해드려요.&rdquo;</p>
+                <p className="text-[rgba(255,255,255,0.4)] text-sm leading-relaxed mt-4">
+                  판매 수익의 일부는 크리에이터의 이름으로 기부에 참여합니다.
+                </p>
               </div>
             </div>
             <div>
@@ -44,7 +47,7 @@ export default function ForCreatorSection() {
           </div>
 
           {/* 오른쪽 — 서비스 리스트 */}
-          <div className="border border-[rgba(255,255,255,0.1)]">
+          <div data-reveal style={{ '--reveal-delay': '120ms' } as React.CSSProperties} className="border border-[rgba(255,255,255,0.1)]">
             {services.map((s, i) => {
               const Icon = s.icon
               return (

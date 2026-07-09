@@ -20,16 +20,16 @@ export default function SolutionSection() {
   return (
     <section id="solution" className="bg-white pt-8 md:pt-12 pb-24 md:pb-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
+        <p data-reveal className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
           Solution
         </p>
-        <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] max-w-[768px] mb-16">
+        <h2 data-reveal style={{ '--reveal-delay': '80ms' } as React.CSSProperties} className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] max-w-[768px] mb-16">
           크리에이터와 팬 모두에게<br />더 나은 경험을 만듭니다.
         </h2>
 
         <div className="grid md:grid-cols-3 gap-px bg-[rgba(12,12,12,0.08)]">
-          {solutions.map((s) => (
-            <div key={s.num} className="bg-white p-10 md:p-12">
+          {solutions.map((s, i) => (
+            <div key={s.num} data-reveal style={{ '--reveal-delay': `${i * 180}ms` } as React.CSSProperties} className="bg-white p-10 md:p-12">
               <p className="text-[80px] font-black leading-none text-[rgba(12,12,12,0.06)] select-none">
                 {s.num}
               </p>

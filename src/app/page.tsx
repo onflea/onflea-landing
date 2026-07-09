@@ -1,5 +1,6 @@
 import { ModalProvider } from '@/context/ModalContext'
 import Modals from '@/components/Modals'
+import ScrollReveal from '@/components/ScrollReveal'
 import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/HeroSection'
 import ProblemSection from '@/components/ProblemSection'
@@ -18,19 +19,23 @@ export default function Home() {
   return (
     <ModalProvider>
       <Modals />
+      <ScrollReveal />
       <Navbar />
       <main>
         <HeroSection />
-        <ProblemSection />
-        <ComparisonSection />
-        <SolutionSection />
-        <ForCreatorSection />
-        <ForBuyerSection />
-        <HowItWorksSection />
-        {/* <TrustSection /> */}
-        <SustainabilitySection />
-        <EarlyAccessSection />
-        <FAQSection />
+        {/* 스크롤 시 히어로 위로 덮이는 콘텐츠 레이어 */}
+        <div className="relative z-10">
+          <ProblemSection />
+          <ComparisonSection />
+          <SolutionSection />
+          <ForCreatorSection />
+          <ForBuyerSection />
+          <HowItWorksSection />
+          {/* <TrustSection /> */}
+          <SustainabilitySection />
+          <EarlyAccessSection />
+          <FAQSection />
+        </div>
       </main>
       <Footer />
     </ModalProvider>

@@ -24,6 +24,10 @@ const faqs = [
     q: '오프라인 플리마켓과 무엇이 다른가요?',
     a: 'ONFLEA는 장소와 시간의 제약 없이 온라인으로 언제든지 참여할 수 있습니다. 오픈런이나 추첨 없이 원하는 상품을 편리하게 구매할 수 있습니다.',
   },
+  {
+    q: '기부는 어떻게 이루어지나요?',
+    a: '상품이 판매되면 정산 단계에서 수익의 일부가 기부금으로 적립되고, 크리에이터의 이름으로 기부처에 전달됩니다. 적립,전달 내역은 정산 리포트에 함께 기재되어 크리에이터가 직접 확인할 수 있습니다.',
+  },
 ]
 
 export default function FAQSection() {
@@ -34,7 +38,7 @@ export default function FAQSection() {
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-[352px_1fr] gap-16 md:gap-24">
           {/* 왼쪽 — 타이틀 + 문의 안내 */}
-          <div className="flex flex-col">
+          <div data-reveal className="flex flex-col">
             <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-4">
               FAQ
             </p>
@@ -82,7 +86,7 @@ export default function FAQSection() {
           </div>
 
           {/* 오른쪽 — 아코디언 */}
-          <div>
+          <div data-reveal style={{ '--reveal-delay': '120ms' } as React.CSSProperties}>
             {faqs.map((faq, i) => (
               <div
                 key={i}

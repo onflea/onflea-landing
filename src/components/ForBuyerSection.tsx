@@ -18,7 +18,7 @@ export default function ForBuyerSection() {
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
           {/* 왼쪽 — 혜택 리스트 */}
-          <div className="bg-white border border-[rgba(12,12,12,0.1)]">
+          <div data-reveal style={{ '--reveal-delay': '120ms' } as React.CSSProperties} className="order-2 md:order-1 bg-white border border-[rgba(12,12,12,0.1)]">
             {buyerBenefits.map((s, i) => {
               const Icon = s.icon
               return (
@@ -37,7 +37,7 @@ export default function ForBuyerSection() {
           </div>
 
           {/* 오른쪽 — 텍스트 */}
-          <div>
+          <div data-reveal className="order-1 md:order-2">
             <p className="text-[rgba(12,12,12,0.35)] text-[10px] font-bold tracking-[3px] uppercase mb-5">For Buyer</p>
             <h2 className="text-[#0c0c0c] text-4xl md:text-[56px] font-black leading-[1.25] mb-6">
               좋아하는 크리에이터의 옷을, 이제 온라인으로 만나보세요.
@@ -48,6 +48,9 @@ export default function ForBuyerSection() {
             <div className="border-l-4 border-[#0c0c0c] pl-6 mb-10">
               <p className="text-[#0c0c0c] text-lg font-black leading-relaxed">
                 플리마켓을 놓쳤다면,<br />ONFLEA에서 다시 만나요.
+              </p>
+              <p className="text-[rgba(12,12,12,0.45)] text-sm leading-relaxed mt-4">
+                좋아서 고른 옷 한 벌이 작은 기부로 이어집니다.
               </p>
             </div>
             <button

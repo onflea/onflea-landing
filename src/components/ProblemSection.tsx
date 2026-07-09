@@ -20,14 +20,14 @@ export default function ProblemSection() {
   return (
     <section id="problem" className="bg-[#f5f5f5] py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
+        <p data-reveal className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
           Problem
         </p>
-        <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] mb-16">
+        <h2 data-reveal style={{ '--reveal-delay': '80ms' } as React.CSSProperties} className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] mb-16">
           플리마켓은 좋지만,<br />너무 번거롭고 멀었습니다.
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-px bg-[rgba(12,12,12,0.1)]">
+        <div data-reveal className="grid md:grid-cols-2 gap-px bg-[rgba(12,12,12,0.1)]">
           {/* 크리에이터 카드 */}
           <div
             className={`p-10 md:p-14 transition-colors duration-300 cursor-default ${

@@ -6,14 +6,29 @@ export default function HeroSection() {
   const { openCreator, openBuyer } = useModal()
 
   return (
-    <section id="hero" className="relative bg-[#0c0c0c] min-h-screen flex flex-col overflow-hidden">
-      {/* 그라데이션 오버레이 */}
+    <section id="hero" className="sticky top-0 z-0 bg-[#0c0c0c] min-h-screen flex flex-col overflow-hidden">
+      {/* 배경 이미지 (모바일: 오른쪽 아래 제품 / 데스크톱: 가운데 아래) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 animate-fade-in"
+        className="pointer-events-none absolute inset-0 bg-cover bg-right-bottom md:bg-bottom animate-fade-in"
+        style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
+      />
+      {/* 오버레이 — 데스크톱 (왼쪽 어둡게 → 오른쪽 제품 노출) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 hidden md:block"
         style={{
           background:
-            'radial-gradient(60% 55% at 85% 35%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 45%, transparent 75%), radial-gradient(50% 50% at 15% 90%, rgba(255,255,255,0.04) 0%, transparent 65%)',
+            'linear-gradient(90deg, rgba(12,12,12,0.95) 0%, rgba(12,12,12,0.85) 40%, rgba(12,12,12,0.55) 75%, rgba(12,12,12,0.4) 100%), linear-gradient(180deg, rgba(12,12,12,0.6) 0%, rgba(12,12,12,0.15) 35%, transparent 70%, rgba(12,12,12,0.25) 100%)',
+        }}
+      />
+      {/* 오버레이 — 모바일 (세로 방향, 전체적으로 진하게) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 md:hidden"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(12,12,12,0.88) 0%, rgba(12,12,12,0.72) 40%, rgba(12,12,12,0.62) 65%, rgba(12,12,12,0.8) 100%)',
         }}
       />
 
