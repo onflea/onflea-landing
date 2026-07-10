@@ -90,6 +90,7 @@ const jsonLd = {
       logo: `${siteUrl}/icon.png`,
       description: siteDescription,
       email: 'contact@onflea.kr',
+      telephone: '+82-10-5648-4170',
       sameAs: ['https://www.instagram.com/onflea.official/'],
     },
     {

@@ -76,7 +76,7 @@ export default function Footer() {
             <span className="hidden md:inline mx-1.5 text-[rgba(255,255,255,0.15)]">|</span>
             주소: 서울특별시 강남구 강남대로112길 47, 2층-778A호(논현동)
             <br />
-            이메일: contact@onflea.kr
+            이메일: contact@onflea.kr <span className="mx-1.5 text-[rgba(255,255,255,0.15)]">|</span> 전화: 010-5648-4170
           </p>
         </div>
 
