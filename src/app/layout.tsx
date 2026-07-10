@@ -84,6 +84,7 @@ const jsonLd = {
       '@type': 'Organization',
       '@id': `${siteUrl}#organization`,
       name: 'ONFLEA',
+      legalName: '온플리',
       alternateName: ['온플리', 'ONFLEA(온플리)'],
       url: siteUrl,
       logo: `${siteUrl}/icon.png`,

@@ -67,8 +67,21 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* 사업자 정보 */}
+        <div className="mt-12 pt-6 border-t border-[rgba(255,255,255,0.08)]">
+          <p className="text-[11px] text-[rgba(255,255,255,0.3)] leading-relaxed">
+            상호: 온플리 <span className="mx-1.5 text-[rgba(255,255,255,0.15)]">|</span> 대표: 이현도
+            <span className="mx-1.5 text-[rgba(255,255,255,0.15)]">|</span> 사업자등록번호: 462-40-01367
+            <br className="md:hidden" />
+            <span className="hidden md:inline mx-1.5 text-[rgba(255,255,255,0.15)]">|</span>
+            주소: 서울특별시 강남구 강남대로112길 47, 2층-778A호(논현동)
+            <br />
+            이메일: contact@onflea.kr
+          </p>
+        </div>
+
         {/* 하단 구분선 + 카피라이트 */}
-        <div className="mt-12 pt-6 border-t border-[rgba(255,255,255,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+        <div className="mt-6 pt-6 border-t border-[rgba(255,255,255,0.08)] flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
           <p className="text-[11px] text-[rgba(255,255,255,0.35)]">
             © 2026 ONFLEA. All rights reserved.
           </p>
