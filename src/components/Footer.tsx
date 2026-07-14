@@ -4,7 +4,8 @@ const linkGroups = [
   {
     title: 'Company',
     links: [
-      { label: 'About', href: '#hero' },
+      // 히어로가 sticky라 #hero 앵커가 동작하지 않음 → 문서 최상단으로
+      { label: 'About', href: '#' },
       { label: 'Contact', href: 'mailto:contact@onflea.kr' },
     ],
   },

@@ -32,7 +32,15 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
-        <a href="#hero" aria-label="ONFLEA 홈">
+        {/* 히어로가 sticky라 #hero 앵커는 스크롤 거리가 0으로 계산됨 → 최상단으로 직접 스크롤 */}
+        <a
+          href="#hero"
+          aria-label="ONFLEA 홈"
+          onClick={(e) => {
+            e.preventDefault()
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}
+        >
           <Image
             src={scrolled || menuOpen ? '/images/logo-horizontal-black.png' : '/images/logo-horizontal-white.png'}
             alt="ONFLEA"
