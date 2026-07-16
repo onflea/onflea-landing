@@ -62,7 +62,13 @@ export const metadata: Metadata = {
   },
   // 구글은 DNS TXT 레코드로 인증 완료 (메타태그 불필요)
   verification: {
-    other: { 'naver-site-verification': '4aa93e437b255b7a02a29867a72bfb62e0b250bc' },
+    other: {
+      // 앞: onflea.kr, 뒤: corp.onflea.kr
+      'naver-site-verification': [
+        '4aa93e437b255b7a02a29867a72bfb62e0b250bc',
+        'eac8d3802864e12ec67fe738666506505ea6df97',
+      ],
+    },
   },
   robots: {
     index: true,
