@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-const baseUrl = 'https://onflea.kr'
+const baseUrl = 'https://corp.onflea.kr'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // 콘텐츠가 실제로 바뀐 배포일에 갱신해주세요
