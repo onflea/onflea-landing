@@ -14,7 +14,7 @@ export default function EarlyAccessSection() {
             Get Started
           </p>
           <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] text-center">
-            ONFLEA의 온라인 플리마켓이 <br className="hidden md:block" />지금 열려 있습니다.
+            크리에이터의 플리마켓, <br className="hidden md:block" />지금 ONFLEA에서.
           </h2>
         </div>
 
