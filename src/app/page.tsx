@@ -34,8 +34,8 @@ export default function Home() {
           <HowItWorksSection />
           {/* <TrustSection /> */}
           <SustainabilitySection />
-          <NewsSection />
           <EarlyAccessSection />
+          <NewsSection />
           <FAQSection />
         </div>
       </main>

@@ -1,36 +1,30 @@
 import Link from 'next/link'
-import NewsRow from '@/components/NewsRow'
+import NewsCarousel from '@/components/NewsCarousel'
 import { getNews } from '@/lib/notion'
 
 export default async function NewsSection() {
-  const news = await getNews(3)
+  const news = await getNews(8)
   if (news.length === 0) return null
 
   return (
-    <section id="news" className="bg-white py-24 md:py-32">
+    <section id="news" className="bg-white py-24 md:py-32 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        <div data-reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-          <div>
-            <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
-              News
-            </p>
-            <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c]">
-              ONFLEA의 새로운 소식
-            </h2>
-          </div>
+        <div data-reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+          <h2 className="text-3xl md:text-[44px] font-black leading-[1.3]">
+            <span className="block text-[rgba(12,12,12,0.3)]">ONFLEA의</span>
+            <span className="block text-[#0c0c0c]">새로운 소식을 만나보세요.</span>
+          </h2>
           <Link
             href="/news"
-            className="inline-flex items-center gap-2 text-[12px] font-bold tracking-[2.16px] uppercase text-[#0c0c0c] border border-[rgba(12,12,12,0.3)] px-6 py-3.5 self-start hover:bg-[#0c0c0c] hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 bg-[#0c0c0c] text-white text-[12px] font-bold tracking-[2.16px] uppercase px-6 py-3.5 self-start sm:self-auto hover:bg-[#333] transition-colors shrink-0"
           >
-            전체 소식 보기
+            전체 소식
             <span className="text-sm">→</span>
           </Link>
         </div>
 
         <div data-reveal style={{ '--reveal-delay': '100ms' } as React.CSSProperties}>
-          {news.map((item, i) => (
-            <NewsRow key={item.id} item={item} first={i === 0} />
-          ))}
+          <NewsCarousel items={news} />
         </div>
       </div>
     </section>

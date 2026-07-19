@@ -17,6 +17,8 @@ export interface NewsItem {
   /** ISO 날짜 (발행일, 없으면 생성일) */
   date: string
   category: string
+  /** 노션 페이지 커버 이미지 (썸네일용, 없으면 null) */
+  cover: string | null
 }
 
 export interface NotionRichText {
@@ -43,6 +45,7 @@ interface NotionPage {
   id: string
   created_time: string
   parent: { database_id?: string }
+  cover: { type: string; file?: { url: string }; external?: { url: string } } | null
   properties: {
     '글 제목': { title: { plain_text: string }[] }
     카테고리: { select: { name: string } | null }
@@ -53,12 +56,16 @@ interface NotionPage {
 }
 
 function toNewsItem(page: NotionPage): NewsItem {
+  const cover = page.cover
+    ? (page.cover.type === 'file' ? page.cover.file?.url : page.cover.external?.url) ?? null
+    : null
   return {
     id: page.id,
     slug: page.id.replace(/-/g, ''),
     title: page.properties['글 제목'].title.map((t) => t.plain_text).join(''),
     date: page.properties['발행일'].date?.start ?? page.created_time.slice(0, 10),
     category: page.properties['카테고리'].select?.name ?? '공지',
+    cover,
   }
 }
 
