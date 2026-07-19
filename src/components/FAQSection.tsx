@@ -64,7 +64,7 @@ export default function FAQSection() {
             </h2>
 
             {/* 추가 문의 안내 */}
-            <div className="mt-10 md:mt-auto p-7 bg-[#f5f5f5]">
+            <div className="mt-10 md:mt-auto pt-8 border-t border-[rgba(12,12,12,0.08)]">
               <p className="text-[15px] font-bold text-[#0c0c0c] mb-2">
                 찾으시는 답변이 없나요?
               </p>
