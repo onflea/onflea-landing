@@ -69,15 +69,20 @@ function toNewsItem(page: NotionPage): NewsItem {
   }
 }
 
-export async function getNews(limit?: number): Promise<NewsItem[]> {
+export async function getNews(limit?: number, category?: string): Promise<NewsItem[]> {
   if (!process.env.NOTION_TOKEN) return []
+
+  const published = { property: '상태', status: { equals: '발행 완료' } }
+  const filter = category
+    ? { and: [published, { property: '카테고리', select: { equals: category } }] }
+    : published
 
   try {
     const res = await fetch(`https://api.notion.com/v1/databases/${NEWS_DATABASE_ID}/query`, {
       method: 'POST',
       headers: API_HEADERS,
       body: JSON.stringify({
-        filter: { property: '상태', status: { equals: '발행 완료' } },
+        filter,
         sorts: [{ property: '발행일', direction: 'descending' }],
         page_size: 100,
       }),

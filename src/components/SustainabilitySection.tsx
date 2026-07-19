@@ -1,3 +1,7 @@
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { getNews } from '@/lib/notion'
+
 const cycles = [
   {
     num: '01',
@@ -11,7 +15,10 @@ const cycles = [
   },
 ]
 
-export default function SustainabilitySection() {
+export default async function SustainabilitySection() {
+  // 최근 기부 소식 1건 — "수익 일부 기부" 주장의 실증 링크 (없으면 미노출)
+  const donation = (await getNews(1, '기부'))[0] ?? null
+
   return (
     <section className="relative bg-[#0c0c0c] text-white py-24 md:py-40 overflow-hidden min-h-[600px] flex items-center">
       {/* 배경 이미지 */}
@@ -69,6 +76,27 @@ export default function SustainabilitySection() {
             </p>
           </div>
         </div>
+
+        {/* 최근 기부 소식 — 발행된 기부 카테고리 글이 있을 때만 노출 */}
+        {donation && (
+          <div data-reveal className="flex justify-center mt-8">
+            <Link
+              href={`/news/${donation.slug}`}
+              className="group inline-flex items-center gap-3 max-w-full px-2"
+            >
+              <span className="text-[10px] font-bold tracking-[2.5px] uppercase text-[rgba(255,255,255,0.4)] shrink-0">
+                최근 기부 소식
+              </span>
+              <span className="text-sm font-bold text-white truncate group-hover:underline underline-offset-4">
+                {donation.title}
+              </span>
+              <ArrowRight
+                size={14}
+                className="shrink-0 text-[rgba(255,255,255,0.5)] transition-transform duration-200 group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
