@@ -1,6 +1,41 @@
 import type { NotionBlock, NotionRichText } from '@/lib/notion'
 
-/* 노션 본문 블록 렌더러 — 문단·헤딩·리스트·이미지·인용·구분선·콜아웃 지원, 그 외 블록은 무시 */
+/* 노션 본문 블록 렌더러 — 문단·헤딩·리스트·체크리스트·표·이미지·인용·콜아웃·코드·구분선 지원, 그 외 블록은 무시 */
+
+// 노션 라이트 모드 팔레트
+const TEXT_COLORS: Record<string, string> = {
+  gray: '#787774',
+  brown: '#9F6B53',
+  orange: '#D9730D',
+  yellow: '#CB912F',
+  green: '#448361',
+  blue: '#337EA9',
+  purple: '#9065B0',
+  pink: '#C14C8A',
+  red: '#D44C47',
+}
+
+const BG_COLORS: Record<string, string> = {
+  gray_background: '#F1F1EF',
+  brown_background: '#F4EEEE',
+  orange_background: '#FAEBDD',
+  yellow_background: '#FBF3DB',
+  green_background: '#EDF3EC',
+  blue_background: '#E7F3F8',
+  purple_background: '#F8F3FC',
+  pink_background: '#FAF1F5',
+  red_background: '#FDEBEC',
+}
+
+function colorStyle(color?: string): React.CSSProperties {
+  if (!color || color === 'default') return {}
+  if (color.endsWith('_background')) {
+    const bg = BG_COLORS[color]
+    return bg ? { backgroundColor: bg } : {}
+  }
+  const text = TEXT_COLORS[color]
+  return text ? { color: text } : {}
+}
 
 function RichText({ rich }: { rich: NotionRichText[] }) {
   return (
@@ -24,7 +59,13 @@ function RichText({ rich }: { rich: NotionRichText[] }) {
               {node}
             </a>
           )
-        return <span key={i}>{node}</span>
+        const style = colorStyle(t.annotations.color)
+        const isHighlight = t.annotations.color?.endsWith('_background')
+        return (
+          <span key={i} style={style} className={isHighlight ? 'px-0.5' : undefined}>
+            {node}
+          </span>
+        )
       })}
     </>
   )
@@ -35,32 +76,42 @@ function blockRichText(block: NotionBlock): NotionRichText[] {
   return data?.rich_text ?? []
 }
 
+function blockColor(block: NotionBlock): string | undefined {
+  const data = block[block.type] as { color?: string } | undefined
+  return data?.color
+}
+
 function Block({ block }: { block: NotionBlock }) {
   switch (block.type) {
     case 'paragraph': {
       const rich = blockRichText(block)
       if (rich.length === 0) return <div className="h-4" />
+      const color = blockColor(block)
+      const isBg = color?.endsWith('_background')
       return (
-        <p className="text-[15px] text-[rgba(12,12,12,0.7)] leading-[1.9] mb-5">
+        <p
+          style={colorStyle(color)}
+          className={`text-[15px] text-[rgba(12,12,12,0.7)] leading-[1.9] mb-5 ${isBg ? 'px-4 py-3' : ''}`}
+        >
           <RichText rich={rich} />
         </p>
       )
     }
     case 'heading_1':
       return (
-        <h2 className="text-2xl md:text-3xl font-black text-[#0c0c0c] mt-12 mb-5">
+        <h2 style={colorStyle(blockColor(block))} className="text-2xl md:text-3xl font-black text-[#0c0c0c] mt-12 mb-5">
           <RichText rich={blockRichText(block)} />
         </h2>
       )
     case 'heading_2':
       return (
-        <h3 className="text-xl md:text-2xl font-black text-[#0c0c0c] mt-10 mb-4">
+        <h3 style={colorStyle(blockColor(block))} className="text-xl md:text-2xl font-black text-[#0c0c0c] mt-10 mb-4">
           <RichText rich={blockRichText(block)} />
         </h3>
       )
     case 'heading_3':
       return (
-        <h4 className="text-lg font-black text-[#0c0c0c] mt-8 mb-3">
+        <h4 style={colorStyle(blockColor(block))} className="text-lg font-black text-[#0c0c0c] mt-8 mb-3">
           <RichText rich={blockRichText(block)} />
         </h4>
       )
@@ -73,8 +124,10 @@ function Block({ block }: { block: NotionBlock }) {
         </blockquote>
       )
     case 'callout': {
+      const color = blockColor(block)
+      const bg = color && color.endsWith('_background') ? BG_COLORS[color] : undefined
       return (
-        <div className="bg-[#f5f5f5] px-6 py-5 my-8">
+        <div style={bg ? { backgroundColor: bg } : undefined} className={`px-6 py-5 my-8 ${bg ? '' : 'bg-[#f5f5f5]'}`}>
           <p className="text-[15px] text-[rgba(12,12,12,0.7)] leading-relaxed">
             <RichText rich={blockRichText(block)} />
           </p>
@@ -112,6 +165,43 @@ function Block({ block }: { block: NotionBlock }) {
         <pre className="bg-[#0c0c0c] text-[#f5f5f5] text-[13px] leading-relaxed p-5 my-8 overflow-x-auto">
           <code>{text}</code>
         </pre>
+      )
+    }
+    case 'table': {
+      const meta = block.table as { has_column_header?: boolean; has_row_header?: boolean }
+      const rows = (block.children ?? []).filter((r) => r.type === 'table_row')
+      if (rows.length === 0) return null
+      return (
+        <div className="overflow-x-auto my-8">
+          <table className="w-full border-collapse text-[14px]">
+            <tbody>
+              {rows.map((row, ri) => {
+                const cells = (row.table_row as { cells: NotionRichText[][] }).cells
+                const headerRow = !!meta.has_column_header && ri === 0
+                return (
+                  <tr key={row.id}>
+                    {cells.map((cell, ci) => {
+                      const headerCell = headerRow || (!!meta.has_row_header && ci === 0)
+                      const Cell = headerCell ? 'th' : 'td'
+                      return (
+                        <Cell
+                          key={ci}
+                          className={`border border-[rgba(12,12,12,0.12)] px-4 py-2.5 text-left align-top leading-relaxed ${
+                            headerCell
+                              ? 'bg-[#f5f5f5] font-bold text-[#0c0c0c]'
+                              : 'text-[rgba(12,12,12,0.7)]'
+                          }`}
+                        >
+                          <RichText rich={cell} />
+                        </Cell>
+                      )
+                    })}
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
       )
     }
     case 'divider':

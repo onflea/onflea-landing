@@ -30,6 +30,8 @@ export interface NotionRichText {
     strikethrough: boolean
     underline: boolean
     code: boolean
+    /** 노션 색상 — 'default' | 'red' | ... | 'red_background' 등 */
+    color: string
   }
 }
 
@@ -151,10 +153,10 @@ export async function getNewsBlocks(slug: string): Promise<NotionBlock[]> {
 
   try {
     const blocks = await fetchChildren(slug)
-    // 리스트 항목의 하위(들여쓰기) 블록 1단계만 추가 조회
+    // 리스트 항목 하위(들여쓰기) 블록과 표의 행 블록만 1단계 추가 조회
     await Promise.all(
       blocks
-        .filter((b) => b.has_children && ['bulleted_list_item', 'numbered_list_item'].includes(b.type))
+        .filter((b) => b.has_children && ['bulleted_list_item', 'numbered_list_item', 'table'].includes(b.type))
         .map(async (b) => {
           b.children = await fetchChildren(b.id)
         }),
