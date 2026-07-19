@@ -47,7 +47,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="bg-[#f5f5f5] py-24 md:py-32">
+    <section id="faq" className="bg-white border-t border-[rgba(12,12,12,0.08)] py-24 md:py-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -64,7 +64,7 @@ export default function FAQSection() {
             </h2>
 
             {/* 추가 문의 안내 */}
-            <div className="mt-10 md:mt-auto p-7 bg-white">
+            <div className="mt-10 md:mt-auto p-7 bg-[#f5f5f5]">
               <p className="text-[15px] font-bold text-[#0c0c0c] mb-2">
                 찾으시는 답변이 없나요?
               </p>
