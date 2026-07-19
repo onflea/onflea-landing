@@ -15,7 +15,7 @@ function NewsCard({ item }: { item: NewsItem }) {
       className="group w-[260px] sm:w-[300px] md:w-[320px] shrink-0 snap-start"
     >
       {/* 썸네일 — 노션 페이지 커버, 없으면 심볼 플레이스홀더 */}
-      <div className="aspect-[4/3] bg-[rgba(255,255,255,0.06)] overflow-hidden mb-4">
+      <div className="aspect-[4/3] bg-[#f5f5f5] overflow-hidden mb-4">
         {item.cover ? (
           // 노션 커버 URL은 만료 기한이 있어 next/image 대신 원본 사용
           // eslint-disable-next-line @next/next/no-img-element
@@ -27,20 +27,20 @@ function NewsCard({ item }: { item: NewsItem }) {
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <Image
-              src="/images/logo-symbol-white.png"
+              src="/images/logo-symbol-black.png"
               alt=""
               width={200}
               height={200}
-              className="w-12 h-auto opacity-[0.15] transition-opacity duration-300 group-hover:opacity-30"
+              className="w-12 h-auto opacity-[0.12] transition-opacity duration-300 group-hover:opacity-20"
             />
           </div>
         )}
       </div>
 
-      <p className="text-[11px] text-[rgba(255,255,255,0.4)] tracking-[0.5px] mb-2">
-        {item.category} <span className="mx-1 text-[rgba(255,255,255,0.2)]">·</span> {date}
+      <p className="text-[11px] text-[rgba(12,12,12,0.4)] tracking-[0.5px] mb-2">
+        {item.category} <span className="mx-1 text-[rgba(12,12,12,0.2)]">·</span> {date}
       </p>
-      <h3 className="text-base md:text-[17px] font-bold text-white leading-snug line-clamp-2 group-hover:underline underline-offset-4 decoration-2">
+      <h3 className="text-base md:text-[17px] font-bold text-[#0c0c0c] leading-snug line-clamp-2 group-hover:underline underline-offset-4 decoration-2">
         {item.title}
       </h3>
     </Link>
@@ -92,7 +92,7 @@ export default function NewsCarousel({ items }: { items: NewsItem[] }) {
           onClick={() => scroll(-1)}
           disabled={!canPrev}
           aria-label="이전 소식"
-          className="size-11 border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white transition-colors hover:bg-white hover:text-[#0c0c0c] disabled:opacity-25 disabled:pointer-events-none"
+          className="size-11 border border-[rgba(12,12,12,0.25)] flex items-center justify-center text-[#0c0c0c] transition-colors hover:bg-[#0c0c0c] hover:text-white disabled:opacity-25 disabled:pointer-events-none"
         >
           <ArrowLeft size={17} />
         </button>
@@ -100,7 +100,7 @@ export default function NewsCarousel({ items }: { items: NewsItem[] }) {
           onClick={() => scroll(1)}
           disabled={!canNext}
           aria-label="다음 소식"
-          className="size-11 border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white transition-colors hover:bg-white hover:text-[#0c0c0c] disabled:opacity-25 disabled:pointer-events-none"
+          className="size-11 border border-[rgba(12,12,12,0.25)] flex items-center justify-center text-[#0c0c0c] transition-colors hover:bg-[#0c0c0c] hover:text-white disabled:opacity-25 disabled:pointer-events-none"
         >
           <ArrowRight size={17} />
         </button>
