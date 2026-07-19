@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { getNews, formatNewsDate } from '@/lib/notion'
 
 export default async function NewsSection() {
@@ -29,11 +29,9 @@ export default async function NewsSection() {
 
         <div data-reveal style={{ '--reveal-delay': '100ms' } as React.CSSProperties}>
           {news.map((item, i) => (
-            <a
+            <Link
               key={item.id}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/news/${item.slug}`}
               className={`group flex items-center gap-4 md:gap-8 py-6 border-b border-[rgba(12,12,12,0.08)] ${
                 i === 0 ? 'border-t' : ''
               }`}
@@ -47,11 +45,11 @@ export default async function NewsSection() {
               <span className="flex-1 text-base md:text-lg font-bold text-[#0c0c0c] truncate group-hover:underline underline-offset-4">
                 {item.title}
               </span>
-              <ArrowUpRight
+              <ArrowRight
                 size={18}
                 className="shrink-0 text-[rgba(12,12,12,0.3)] group-hover:text-[#0c0c0c] transition-colors"
               />
-            </a>
+            </Link>
           ))}
         </div>
       </div>

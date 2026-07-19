@@ -3,25 +3,61 @@ const NEWS_DATABASE_ID = '3a2d652436f680e0b45bd4e75ec7fc51'
 // 노션 수정 후 사이트 반영까지 최대 10분
 const REVALIDATE_SECONDS = 600
 
+const API_HEADERS = {
+  Authorization: `Bearer ${process.env.NOTION_TOKEN}`,
+  'Notion-Version': '2022-06-28',
+  'Content-Type': 'application/json',
+}
+
 export interface NewsItem {
   id: string
+  /** 상세 페이지 URL 조각 (대시 제거한 페이지 ID) */
+  slug: string
   title: string
   /** ISO 날짜 (발행일, 없으면 생성일) */
   date: string
   category: string
-  /** 노션 공개 페이지 URL */
-  url: string
+}
+
+export interface NotionRichText {
+  plain_text: string
+  href: string | null
+  annotations: {
+    bold: boolean
+    italic: boolean
+    strikethrough: boolean
+    underline: boolean
+    code: boolean
+  }
+}
+
+export interface NotionBlock {
+  id: string
+  type: string
+  has_children: boolean
+  children?: NotionBlock[]
+  [key: string]: unknown
 }
 
 interface NotionPage {
   id: string
   created_time: string
-  url: string
-  public_url: string | null
+  parent: { database_id?: string }
   properties: {
     '글 제목': { title: { plain_text: string }[] }
     카테고리: { select: { name: string } | null }
     발행일: { date: { start: string } | null }
+    상태: { status: { name: string } | null }
+  }
+}
+
+function toNewsItem(page: NotionPage): NewsItem {
+  return {
+    id: page.id,
+    slug: page.id.replace(/-/g, ''),
+    title: page.properties['글 제목'].title.map((t) => t.plain_text).join(''),
+    date: page.properties['발행일'].date?.start ?? page.created_time.slice(0, 10),
+    category: page.properties['카테고리'].select?.name ?? '공지',
   }
 }
 
@@ -31,11 +67,7 @@ export async function getNews(limit?: number): Promise<NewsItem[]> {
   try {
     const res = await fetch(`https://api.notion.com/v1/databases/${NEWS_DATABASE_ID}/query`, {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.NOTION_TOKEN}`,
-        'Notion-Version': '2022-06-28',
-        'Content-Type': 'application/json',
-      },
+      headers: API_HEADERS,
       body: JSON.stringify({
         filter: { property: '상태', status: { equals: '발행 완료' } },
         sorts: [{ property: '발행일', direction: 'descending' }],
@@ -48,13 +80,7 @@ export async function getNews(limit?: number): Promise<NewsItem[]> {
     const data = (await res.json()) as { results: NotionPage[] }
 
     const items = data.results
-      .map((page) => ({
-        id: page.id,
-        title: page.properties['글 제목'].title.map((t) => t.plain_text).join(''),
-        date: page.properties['발행일'].date?.start ?? page.created_time.slice(0, 10),
-        category: page.properties['카테고리'].select?.name ?? '공지',
-        url: page.public_url ?? page.url,
-      }))
+      .map(toNewsItem)
       .filter((item) => item.title.length > 0)
       // 발행일 미입력 건이 섞여도 최신순 유지
       .sort((a, b) => b.date.localeCompare(a.date))
@@ -62,6 +88,71 @@ export async function getNews(limit?: number): Promise<NewsItem[]> {
     return limit ? items.slice(0, limit) : items
   } catch {
     // 노션 장애 시 소식 영역만 조용히 숨김 (페이지 전체는 정상 렌더링)
+    return []
+  }
+}
+
+/** slug(대시 없는 페이지 ID)로 발행 완료 상태의 글 조회. 미발행/타 DB 글이면 null */
+export async function getNewsPost(slug: string): Promise<NewsItem | null> {
+  if (!process.env.NOTION_TOKEN || !/^[0-9a-f]{32}$/.test(slug)) return null
+
+  try {
+    const res = await fetch(`https://api.notion.com/v1/pages/${slug}`, {
+      headers: API_HEADERS,
+      next: { revalidate: REVALIDATE_SECONDS },
+    })
+    if (!res.ok) return null
+
+    const page = (await res.json()) as NotionPage
+    if (page.parent.database_id?.replace(/-/g, '') !== NEWS_DATABASE_ID) return null
+    if (page.properties['상태'].status?.name !== '발행 완료') return null
+
+    return toNewsItem(page)
+  } catch {
+    return null
+  }
+}
+
+/** 페이지 본문 블록 조회 (리스트 중첩 1단계까지) */
+export async function getNewsBlocks(slug: string): Promise<NotionBlock[]> {
+  if (!process.env.NOTION_TOKEN) return []
+
+  async function fetchChildren(blockId: string): Promise<NotionBlock[]> {
+    const blocks: NotionBlock[] = []
+    let cursor: string | undefined
+
+    do {
+      const params = new URLSearchParams({ page_size: '100' })
+      if (cursor) params.set('start_cursor', cursor)
+      const res = await fetch(
+        `https://api.notion.com/v1/blocks/${blockId}/children?${params}`,
+        { headers: API_HEADERS, next: { revalidate: REVALIDATE_SECONDS } },
+      )
+      if (!res.ok) throw new Error(`notion-blocks-failed: ${res.status}`)
+      const data = (await res.json()) as {
+        results: NotionBlock[]
+        has_more: boolean
+        next_cursor: string | null
+      }
+      blocks.push(...data.results)
+      cursor = data.has_more ? data.next_cursor ?? undefined : undefined
+    } while (cursor)
+
+    return blocks
+  }
+
+  try {
+    const blocks = await fetchChildren(slug)
+    // 리스트 항목의 하위(들여쓰기) 블록 1단계만 추가 조회
+    await Promise.all(
+      blocks
+        .filter((b) => b.has_children && ['bulleted_list_item', 'numbered_list_item'].includes(b.type))
+        .map(async (b) => {
+          b.children = await fetchChildren(b.id)
+        }),
+    )
+    return blocks
+  } catch {
     return []
   }
 }

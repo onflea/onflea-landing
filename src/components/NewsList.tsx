@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import type { NewsItem } from '@/lib/notion'
 
 export default function NewsList({ items }: { items: NewsItem[] }) {
@@ -34,11 +35,9 @@ export default function NewsList({ items }: { items: NewsItem[] }) {
       )}
 
       {filtered.map((item, i) => (
-        <a
+        <Link
           key={item.id}
-          href={item.url}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={`/news/${item.slug}`}
           className={`group flex items-center gap-4 md:gap-8 py-6 border-b border-[rgba(12,12,12,0.08)] ${
             i === 0 ? 'border-t' : ''
           }`}
@@ -52,11 +51,11 @@ export default function NewsList({ items }: { items: NewsItem[] }) {
           <span className="flex-1 text-base md:text-lg font-bold text-[#0c0c0c] truncate group-hover:underline underline-offset-4">
             {item.title}
           </span>
-          <ArrowUpRight
+          <ArrowRight
             size={18}
             className="shrink-0 text-[rgba(12,12,12,0.3)] group-hover:text-[#0c0c0c] transition-colors"
           />
-        </a>
+        </Link>
       ))}
     </div>
   )
