@@ -1,9 +1,10 @@
 'use client'
 
 import { useModal } from '@/context/ModalContext'
+import { SHOP_URL } from '@/lib/constants'
 
 export default function EarlyAccessSection() {
-  const { openCreator, openBuyer } = useModal()
+  const { openCreator } = useModal()
 
   return (
     <section id="early-access" className="bg-[#f5f5f5] py-24 md:py-32">
@@ -13,7 +14,7 @@ export default function EarlyAccessSection() {
             Get Started
           </p>
           <h2 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] text-center">
-            ONFLEA와 함께 첫 번째 <br className="hidden md:block" />온라인 플리마켓을 시작해보세요.
+            ONFLEA의 온라인 플리마켓이 <br className="hidden md:block" />지금 열려 있습니다.
           </h2>
         </div>
 
@@ -39,18 +40,18 @@ export default function EarlyAccessSection() {
           {/* 구매자 — 라이트 */}
           <div className="bg-white p-12 md:p-14 flex flex-col">
             <p className="text-[rgba(12,12,12,0.35)] text-[10px] font-bold tracking-[2.5px] uppercase mb-4">구매자</p>
-            <h3 className="text-[#0c0c0c] text-3xl font-black mb-4">오픈 알림 받기</h3>
+            <h3 className="text-[#0c0c0c] text-3xl font-black mb-4">지금 쇼핑하기</h3>
             <p className="text-[rgba(12,12,12,0.55)] text-sm leading-relaxed max-w-[480px] mb-8">
-              좋아하는 크리에이터의 옷을 가장 먼저 만나보고 싶다면 오픈 알림을 신청해 주세요.
+              좋아하는 크리에이터의 옷이 ONFLEA 쇼핑몰에서 판매 중입니다. 지금 바로 만나보세요.
             </p>
             <div className="mt-auto">
-              <button
-                onClick={openBuyer}
+              <a
+                href={SHOP_URL}
                 className="border border-[rgba(12,12,12,0.3)] text-[#0c0c0c] text-[12px] font-medium tracking-[2.16px] uppercase px-8 py-4 inline-flex items-center gap-2 hover:bg-[#0c0c0c] hover:text-white transition-colors"
               >
-                오픈 알림 받기
+                쇼핑몰 바로가기
                 <span className="text-sm">→</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
