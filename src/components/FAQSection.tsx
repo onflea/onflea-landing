@@ -47,13 +47,13 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="bg-white border-t border-[rgba(12,12,12,0.08)] py-24 md:py-32">
+    <section id="faq" className="bg-[#f5f5f5] py-24 md:py-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        <div className="grid md:grid-cols-[352px_1fr] gap-16 md:gap-24">
+        <div className="bg-white p-8 md:p-14 grid md:grid-cols-[352px_1fr] gap-12 md:gap-20">
           {/* 왼쪽 — 타이틀 + 문의 안내 */}
           <div data-reveal className="flex flex-col">
             <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-4">
