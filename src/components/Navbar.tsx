@@ -21,6 +21,7 @@ export default function Navbar() {
     { label: '크리에이터', href: '#creator' },
     { label: '구매자', href: '#buyer' },
     { label: '서비스 안내', href: '#how-it-works' },
+    { label: '소식', href: '#news' },
     { label: 'FAQ', href: '#faq' },
   ]
 
