@@ -20,17 +20,22 @@ export default async function NewsPage() {
     <>
       <LegalHeader />
       <main className="bg-white min-h-screen">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-5">
-            News
-          </p>
-          <h1 className="text-4xl md:text-[56px] font-black leading-[1.25] text-[#0c0c0c] mb-4">
-            소식
-          </h1>
-          <p className="text-base text-[rgba(12,12,12,0.55)] leading-relaxed mb-14">
-            ONFLEA의 기부 소식, 크리에이터 입점 소식, 서비스 업데이트를 전합니다.
-          </p>
+        {/* 다크 헤더 밴드 */}
+        <div className="bg-[#0c0c0c]">
+          <div className="max-w-[1280px] mx-auto px-6 md:px-12 py-16 md:py-24">
+            <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(255,255,255,0.4)] mb-5">
+              News
+            </p>
+            <h1 className="text-4xl md:text-[64px] font-black leading-[1.15] text-white mb-5">
+              ONFLEA의 소식
+            </h1>
+            <p className="text-base text-[rgba(255,255,255,0.5)] leading-relaxed max-w-[480px]">
+              기부 소식, 크리에이터 입점 소식, 서비스 업데이트를 전합니다.
+            </p>
+          </div>
+        </div>
 
+        <div className="max-w-[1280px] mx-auto px-6 md:px-12 py-14 md:py-20">
           {news.length > 0 ? (
             <NewsList items={news} />
           ) : (

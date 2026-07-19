@@ -48,6 +48,7 @@ interface NotionPage {
     카테고리: { select: { name: string } | null }
     발행일: { date: { start: string } | null }
     상태: { status: { name: string } | null }
+    조회수?: { number: number | null }
   }
 }
 
@@ -160,4 +161,31 @@ export async function getNewsBlocks(slug: string): Promise<NotionBlock[]> {
 export function formatNewsDate(iso: string): string {
   const [y, m, d] = iso.split('-')
   return `${y}.${m}.${d}`
+}
+
+/** 조회수 +1 — 노션 내부 기록용 (사이트에는 노출하지 않음). 발행 완료 글만 집계 */
+export async function incrementNewsViews(slug: string): Promise<void> {
+  if (!process.env.NOTION_TOKEN || !/^[0-9a-f]{32}$/.test(slug)) return
+
+  try {
+    const res = await fetch(`https://api.notion.com/v1/pages/${slug}`, {
+      headers: API_HEADERS,
+      cache: 'no-store',
+    })
+    if (!res.ok) return
+
+    const page = (await res.json()) as NotionPage
+    if (page.parent.database_id?.replace(/-/g, '') !== NEWS_DATABASE_ID) return
+    if (page.properties['상태'].status?.name !== '발행 완료') return
+
+    const current = page.properties['조회수']?.number ?? 0
+    await fetch(`https://api.notion.com/v1/pages/${slug}`, {
+      method: 'PATCH',
+      headers: API_HEADERS,
+      body: JSON.stringify({ properties: { 조회수: { number: current + 1 } } }),
+      cache: 'no-store',
+    })
+  } catch {
+    // 집계 실패는 무시 (페이지 열람에 영향 없음)
+  }
 }

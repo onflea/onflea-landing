@@ -4,6 +4,8 @@ import { ArrowLeft } from 'lucide-react'
 import LegalHeader from '@/components/LegalHeader'
 import Footer from '@/components/Footer'
 import NotionBlocks from '@/components/NotionBlocks'
+import NewsRow from '@/components/NewsRow'
+import ViewTracker from '@/components/ViewTracker'
 import { getNews, getNewsPost, getNewsBlocks, formatNewsDate } from '@/lib/notion'
 
 export const revalidate = 600
@@ -32,25 +34,30 @@ export default async function NewsPostPage({ params }: { params: { slug: string 
   const post = await getNewsPost(params.slug)
   if (!post) notFound()
 
-  const blocks = await getNewsBlocks(params.slug)
+  const [blocks, allNews] = await Promise.all([getNewsBlocks(params.slug), getNews()])
+  const otherNews = allNews.filter((item) => item.slug !== post.slug).slice(0, 3)
 
   return (
     <>
       <LegalHeader />
+      <ViewTracker slug={post.slug} />
       <main className="bg-white min-h-screen">
-        <article className="max-w-[768px] mx-auto px-6 md:px-12 py-16 md:py-24">
+        <article className="max-w-[768px] mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-20">
           {/* 헤더 */}
-          <div className="flex items-center gap-3 mb-6">
-            <span className="border border-[rgba(12,12,12,0.18)] px-3 py-1.5 text-[10px] font-bold tracking-[1.5px] text-[rgba(12,12,12,0.55)]">
+          <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-6">
+            News
+          </p>
+          <h1 className="text-3xl md:text-[44px] font-black leading-[1.3] text-[#0c0c0c] mb-6">
+            {post.title}
+          </h1>
+          <div className="flex items-center gap-3 pb-10 mb-12 border-b border-[rgba(12,12,12,0.08)]">
+            <span className="border border-[rgba(12,12,12,0.18)] px-2.5 py-1 text-[10px] font-bold tracking-[1.5px] text-[rgba(12,12,12,0.55)]">
               {post.category}
             </span>
-            <span className="text-sm text-[rgba(12,12,12,0.4)] tabular-nums">
+            <span className="text-[13px] text-[rgba(12,12,12,0.4)] tabular-nums">
               {formatNewsDate(post.date)}
             </span>
           </div>
-          <h1 className="text-3xl md:text-[44px] font-black leading-[1.3] text-[#0c0c0c] mb-12 pb-10 border-b border-[rgba(12,12,12,0.08)]">
-            {post.title}
-          </h1>
 
           {/* 본문 */}
           {blocks.length > 0 ? (
@@ -60,7 +67,7 @@ export default async function NewsPostPage({ params }: { params: { slug: string 
           )}
 
           {/* 하단 내비게이션 */}
-          <div className="mt-16 pt-8 border-t border-[rgba(12,12,12,0.08)]">
+          <div className="mt-16">
             <Link
               href="/news"
               className="inline-flex items-center gap-2 text-[12px] font-bold tracking-[2.16px] uppercase text-[#0c0c0c] border border-[rgba(12,12,12,0.3)] px-6 py-3.5 hover:bg-[#0c0c0c] hover:text-white transition-colors"
@@ -70,6 +77,20 @@ export default async function NewsPostPage({ params }: { params: { slug: string 
             </Link>
           </div>
         </article>
+
+        {/* 다른 소식 */}
+        {otherNews.length > 0 && (
+          <div className="border-t border-[rgba(12,12,12,0.08)] bg-[#f5f5f5]">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-12 py-16 md:py-20">
+              <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-8">
+                More News
+              </p>
+              {otherNews.map((item, i) => (
+                <NewsRow key={item.id} item={item} first={i === 0} />
+              ))}
+            </div>
+          </div>
+        )}
       </main>
       <Footer />
     </>

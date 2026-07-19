@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-import { getNews, formatNewsDate } from '@/lib/notion'
+import NewsRow from '@/components/NewsRow'
+import { getNews } from '@/lib/notion'
 
 export default async function NewsSection() {
   const news = await getNews(3)
@@ -29,27 +29,7 @@ export default async function NewsSection() {
 
         <div data-reveal style={{ '--reveal-delay': '100ms' } as React.CSSProperties}>
           {news.map((item, i) => (
-            <Link
-              key={item.id}
-              href={`/news/${item.slug}`}
-              className={`group flex items-center gap-4 md:gap-8 py-6 border-b border-[rgba(12,12,12,0.08)] ${
-                i === 0 ? 'border-t' : ''
-              }`}
-            >
-              <span className="text-sm text-[rgba(12,12,12,0.4)] tabular-nums shrink-0 w-[88px]">
-                {formatNewsDate(item.date)}
-              </span>
-              <span className="hidden sm:inline-flex border border-[rgba(12,12,12,0.18)] px-3 py-1.5 text-[10px] font-bold tracking-[1.5px] text-[rgba(12,12,12,0.55)] shrink-0">
-                {item.category}
-              </span>
-              <span className="flex-1 text-base md:text-lg font-bold text-[#0c0c0c] truncate group-hover:underline underline-offset-4">
-                {item.title}
-              </span>
-              <ArrowRight
-                size={18}
-                className="shrink-0 text-[rgba(12,12,12,0.3)] group-hover:text-[#0c0c0c] transition-colors"
-              />
-            </Link>
+            <NewsRow key={item.id} item={item} first={i === 0} />
           ))}
         </div>
       </div>
