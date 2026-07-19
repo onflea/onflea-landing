@@ -81,6 +81,39 @@ function Block({ block }: { block: NotionBlock }) {
         </div>
       )
     }
+    case 'to_do': {
+      const data = block.to_do as { rich_text?: NotionRichText[]; checked?: boolean }
+      const checked = data.checked ?? false
+      return (
+        <div className="flex items-start gap-3 mb-2.5">
+          <span
+            className={`mt-[4px] size-4 border shrink-0 flex items-center justify-center ${
+              checked ? 'bg-[#0c0c0c] border-[#0c0c0c]' : 'border-[rgba(12,12,12,0.3)]'
+            }`}
+          >
+            {checked && <span className="text-white text-[10px] leading-none font-bold">✓</span>}
+          </span>
+          <p
+            className={`text-[15px] leading-[1.7] ${
+              checked
+                ? 'text-[rgba(12,12,12,0.35)] line-through decoration-[rgba(12,12,12,0.25)]'
+                : 'text-[rgba(12,12,12,0.7)]'
+            }`}
+          >
+            <RichText rich={data.rich_text ?? []} />
+          </p>
+        </div>
+      )
+    }
+    case 'code': {
+      const data = block.code as { rich_text?: NotionRichText[] }
+      const text = (data.rich_text ?? []).map((t) => t.plain_text).join('')
+      return (
+        <pre className="bg-[#0c0c0c] text-[#f5f5f5] text-[13px] leading-relaxed p-5 my-8 overflow-x-auto">
+          <code>{text}</code>
+        </pre>
+      )
+    }
     case 'divider':
       return <hr className="border-[rgba(12,12,12,0.08)] my-10" />
     case 'image': {
