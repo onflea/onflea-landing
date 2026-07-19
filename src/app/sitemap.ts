@@ -14,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${baseUrl}/news`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/privacy`,
       lastModified,
       changeFrequency: 'yearly',

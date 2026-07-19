@@ -11,6 +11,7 @@ import ForBuyerSection from '@/components/ForBuyerSection'
 import HowItWorksSection from '@/components/HowItWorksSection'
 import TrustSection from '@/components/TrustSection'
 import SustainabilitySection from '@/components/SustainabilitySection'
+import NewsSection from '@/components/NewsSection'
 import EarlyAccessSection from '@/components/EarlyAccessSection'
 import FAQSection from '@/components/FAQSection'
 import Footer from '@/components/Footer'
@@ -33,6 +34,7 @@ export default function Home() {
           <HowItWorksSection />
           {/* <TrustSection /> */}
           <SustainabilitySection />
+          <NewsSection />
           <EarlyAccessSection />
           <FAQSection />
         </div>
