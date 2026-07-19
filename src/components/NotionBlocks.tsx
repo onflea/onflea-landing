@@ -41,10 +41,14 @@ function RichText({ rich }: { rich: NotionRichText[] }) {
   return (
     <>
       {rich.map((t, i) => {
+        const hasTextColor =
+          t.annotations.color !== 'default' && !t.annotations.color?.endsWith('_background')
         let node: React.ReactNode = t.plain_text
         if (t.annotations.code)
           node = <code className="bg-[#f5f5f5] px-1.5 py-0.5 text-[0.9em]">{node}</code>
-        if (t.annotations.bold) node = <strong className="font-bold text-[#0c0c0c]">{node}</strong>
+        if (t.annotations.bold)
+          // 색상 지정 시 볼드의 기본 검정색이 색을 덮지 않도록
+          node = <strong className={hasTextColor ? 'font-bold' : 'font-bold text-[#0c0c0c]'}>{node}</strong>
         if (t.annotations.italic) node = <em>{node}</em>
         if (t.annotations.strikethrough) node = <s>{node}</s>
         if (t.annotations.underline) node = <u className="underline underline-offset-2">{node}</u>
