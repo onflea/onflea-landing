@@ -42,9 +42,9 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2.5 border border-[rgba(255,255,255,0.25)] px-[15px] py-[9px] mb-6 animate-fade-in-up"
             style={{ animationDelay: '100ms' }}
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-white opacity-70 shrink-0" />
+            <div className="w-1.5 h-1.5 rounded-full bg-white opacity-70 shrink-0 animate-pulse" />
             <p className="text-white/70 text-[10px] tracking-[2.5px] uppercase font-normal">
-              Online Flea Market Platform
+              Online Flea Market <span className="text-white font-bold">— Now Open</span>
             </p>
           </div>
 

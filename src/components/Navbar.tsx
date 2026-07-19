@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { useModal } from '@/context/ModalContext'
 import { SHOP_URL } from '@/lib/constants'
+import AnnouncementBar from '@/components/AnnouncementBar'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -32,6 +33,7 @@ export default function Navbar() {
           : 'bg-transparent border-transparent'
       }`}
     >
+      <AnnouncementBar />
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
         {/* 히어로가 sticky라 #hero 앵커는 스크롤 거리가 0으로 계산됨 → 최상단으로 직접 스크롤 */}
         <a
