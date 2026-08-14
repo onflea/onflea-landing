@@ -33,7 +33,7 @@ export default function AnnouncementBar() {
     <div className="bg-[#0c0c0c] border-b border-[rgba(255,255,255,0.12)]">
       <div className="max-w-[1280px] mx-auto px-10 md:px-12 h-10 flex items-center justify-center gap-3 relative">
         <p className="text-[12px] tracking-wide text-[rgba(255,255,255,0.7)] truncate">
-          ONFLEA 온라인 플리마켓이 정식 오픈했습니다
+          ONFLEA 온라인 플리마켓에서 판매가 진행중입니다
         </p>
         <a
           href={SHOP_URL}
