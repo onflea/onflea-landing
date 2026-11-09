@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import type { NewsItem } from '@/lib/notion'
 
-/* 소식 목록 공용 행 — 메인 NEWS 섹션, /news 목록, 상세 하단 '다른 소식'에서 사용 */
+/* 소식 목록 행 — 글 상세 하단 '다른 소식'에서 사용 */
 export default function NewsRow({ item, first = false }: { item: NewsItem; first?: boolean }) {
   const date = item.date.split('-').join('.')
 
