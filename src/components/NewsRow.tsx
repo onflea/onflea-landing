@@ -14,11 +14,11 @@ export default function NewsRow({ item, first = false }: { item: NewsItem; first
       }`}
     >
       {/* 메타 (날짜 + 카테고리) — 고정 폭으로 제목 시작점 정렬 */}
-      <span className="flex items-center gap-3 shrink-0 md:w-[230px]">
-        <span className="text-[13px] text-[rgba(12,12,12,0.4)] tabular-nums w-[76px] shrink-0">
+      <span className="flex items-center gap-3 shrink-0 md:w-[250px]">
+        <span className="text-[14px] text-[rgba(12,12,12,0.6)] tabular-nums w-[84px] shrink-0">
           {date}
         </span>
-        <span className="border border-[rgba(12,12,12,0.18)] px-2.5 py-1 text-[10px] font-bold tracking-[1.5px] text-[rgba(12,12,12,0.55)] whitespace-nowrap">
+        <span className="border border-[rgba(12,12,12,0.18)] px-2.5 py-1 text-[12px] font-bold tracking-[1.5px] text-[rgba(12,12,12,0.7)] whitespace-nowrap">
           {item.category}
         </span>
       </span>

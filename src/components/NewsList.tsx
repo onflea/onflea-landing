@@ -22,7 +22,7 @@ export default function NewsList({ items }: { items: NewsItem[] }) {
               className={`px-5 py-2.5 text-[12px] font-bold tracking-[1.5px] border transition-colors ${
                 category === c
                   ? 'bg-[#0c0c0c] text-white border-[#0c0c0c]'
-                  : 'border-[rgba(12,12,12,0.18)] text-[rgba(12,12,12,0.55)] hover:text-[#0c0c0c] hover:border-[rgba(12,12,12,0.4)]'
+                  : 'border-[rgba(12,12,12,0.18)] text-[rgba(12,12,12,0.7)] hover:text-[#0c0c0c] hover:border-[rgba(12,12,12,0.4)]'
               }`}
             >
               {c ?? '전체'}
@@ -38,7 +38,7 @@ export default function NewsList({ items }: { items: NewsItem[] }) {
         filtered.map((item, i) => <NewsRow key={item.id} item={item} first={i === 0} />)
       ) : (
         <div className="border-t border-b border-[rgba(12,12,12,0.08)] py-20 text-center">
-          <p className="text-[rgba(12,12,12,0.45)] text-sm">해당 카테고리의 소식이 없습니다.</p>
+          <p className="text-[rgba(12,12,12,0.6)] text-base">해당 카테고리의 소식이 없습니다.</p>
         </div>
       )}
     </div>

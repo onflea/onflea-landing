@@ -2,6 +2,10 @@ import type { NotionBlock, NotionRichText } from '@/lib/notion'
 
 /* 노션 본문 블록 렌더러 — 문단·헤딩·리스트·체크리스트·표·이미지·인용·콜아웃·코드·구분선 지원, 그 외 블록은 무시 */
 
+// 본문 글자 크기·색 (문단, 목록, 콜아웃, 체크리스트 공용)
+const BODY_SIZE = 'text-[17px] md:text-[18px]'
+const BODY_COLOR = 'text-[#262626]'
+
 // 노션 라이트 모드 팔레트
 const TEXT_COLORS: Record<string, string> = {
   gray: '#787774',
@@ -95,7 +99,7 @@ function Block({ block }: { block: NotionBlock }) {
       return (
         <p
           style={colorStyle(color)}
-          className={`text-[15px] text-[rgba(12,12,12,0.7)] leading-[1.9] mb-5 ${isBg ? 'px-4 py-3' : ''}`}
+          className={`${BODY_SIZE} ${BODY_COLOR} leading-[1.85] mb-6 ${isBg ? 'px-4 py-3' : ''}`}
         >
           <RichText rich={rich} />
         </p>
@@ -115,14 +119,14 @@ function Block({ block }: { block: NotionBlock }) {
       )
     case 'heading_3':
       return (
-        <h4 style={colorStyle(blockColor(block))} className="text-lg font-black text-[#0c0c0c] mt-8 mb-3">
+        <h4 style={colorStyle(blockColor(block))} className="text-lg md:text-xl font-black text-[#0c0c0c] mt-8 mb-3">
           <RichText rich={blockRichText(block)} />
         </h4>
       )
     case 'quote':
       return (
         <blockquote className="border-l-4 border-[#0c0c0c] pl-6 py-1 my-8">
-          <p className="text-base font-bold text-[#0c0c0c] leading-relaxed">
+          <p className="text-[18px] md:text-[20px] font-bold text-[#0c0c0c] leading-[1.7]">
             <RichText rich={blockRichText(block)} />
           </p>
         </blockquote>
@@ -132,7 +136,7 @@ function Block({ block }: { block: NotionBlock }) {
       const bg = color && color.endsWith('_background') ? BG_COLORS[color] : undefined
       return (
         <div style={bg ? { backgroundColor: bg } : undefined} className={`px-6 py-5 my-8 ${bg ? '' : 'bg-[#f5f5f5]'}`}>
-          <p className="text-[15px] text-[rgba(12,12,12,0.7)] leading-relaxed">
+          <p className={`${BODY_SIZE} ${BODY_COLOR} leading-[1.75]`}>
             <RichText rich={blockRichText(block)} />
           </p>
         </div>
@@ -144,17 +148,17 @@ function Block({ block }: { block: NotionBlock }) {
       return (
         <div className="flex items-start gap-3 mb-2.5">
           <span
-            className={`mt-[4px] size-4 border shrink-0 flex items-center justify-center ${
+            className={`mt-[7px] size-4 border shrink-0 flex items-center justify-center ${
               checked ? 'bg-[#0c0c0c] border-[#0c0c0c]' : 'border-[rgba(12,12,12,0.3)]'
             }`}
           >
             {checked && <span className="text-white text-[10px] leading-none font-bold">✓</span>}
           </span>
           <p
-            className={`text-[15px] leading-[1.7] ${
+            className={`${BODY_SIZE} leading-[1.75] ${
               checked
-                ? 'text-[rgba(12,12,12,0.35)] line-through decoration-[rgba(12,12,12,0.25)]'
-                : 'text-[rgba(12,12,12,0.7)]'
+                ? 'text-[rgba(12,12,12,0.55)] line-through decoration-[rgba(12,12,12,0.35)]'
+                : BODY_COLOR
             }`}
           >
             <RichText rich={data.rich_text ?? []} />
@@ -166,7 +170,7 @@ function Block({ block }: { block: NotionBlock }) {
       const data = block.code as { rich_text?: NotionRichText[] }
       const text = (data.rich_text ?? []).map((t) => t.plain_text).join('')
       return (
-        <pre className="bg-[#0c0c0c] text-[#f5f5f5] text-[13px] leading-relaxed p-5 my-8 overflow-x-auto">
+        <pre className="bg-[#0c0c0c] text-[#f5f5f5] text-[14px] md:text-[15px] leading-relaxed p-5 my-8 overflow-x-auto">
           <code>{text}</code>
         </pre>
       )
@@ -177,7 +181,7 @@ function Block({ block }: { block: NotionBlock }) {
       if (rows.length === 0) return null
       return (
         <div className="overflow-x-auto my-8">
-          <table className="w-full border-collapse text-[14px]">
+          <table className="w-full border-collapse text-[15px] md:text-[16px]">
             <tbody>
               {rows.map((row, ri) => {
                 const cells = (row.table_row as { cells: NotionRichText[][] }).cells
@@ -193,7 +197,7 @@ function Block({ block }: { block: NotionBlock }) {
                           className={`border border-[rgba(12,12,12,0.12)] px-4 py-2.5 text-left align-top leading-relaxed ${
                             headerCell
                               ? 'bg-[#f5f5f5] font-bold text-[#0c0c0c]'
-                              : 'text-[rgba(12,12,12,0.7)]'
+                              : BODY_COLOR
                           }`}
                         >
                           <RichText rich={cell} />
@@ -226,7 +230,7 @@ function Block({ block }: { block: NotionBlock }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={src} alt={caption} className="w-full h-auto" />
           {caption && (
-            <figcaption className="mt-3 text-[13px] text-[rgba(12,12,12,0.4)] text-center">
+            <figcaption className="mt-3 text-[14px] text-[rgba(12,12,12,0.6)] text-center">
               {caption}
             </figcaption>
           )}
@@ -240,7 +244,7 @@ function Block({ block }: { block: NotionBlock }) {
 
 function ListItem({ block }: { block: NotionBlock }) {
   return (
-    <li className="text-[15px] text-[rgba(12,12,12,0.7)] leading-[1.9]">
+    <li className={`${BODY_SIZE} ${BODY_COLOR} leading-[1.85]`}>
       <RichText rich={blockRichText(block)} />
       {block.children && block.children.length > 0 && (
         <NotionBlocks blocks={block.children} nested />
@@ -275,7 +279,8 @@ export default function NotionBlocks({
   }
 
   return (
-    <div className={nested ? 'mt-1' : ''}>
+    // 한글 단어가 줄 끝에서 잘리지 않게 어절 단위로 줄바꿈 (긴 URL은 넘치지 않게 끊음)
+    <div className={nested ? 'mt-1' : 'break-keep break-words'}>
       {groups.map((g, i) => {
         if (g.kind === 'list') {
           const List = g.listType === 'numbered_list_item' ? 'ol' : 'ul'
@@ -284,7 +289,7 @@ export default function NotionBlocks({
               key={i}
               className={`${
                 g.listType === 'numbered_list_item' ? 'list-decimal' : 'list-disc'
-              } pl-6 mb-5 space-y-1.5 marker:text-[rgba(12,12,12,0.35)]`}
+              } pl-6 mb-6 space-y-2 marker:text-[rgba(12,12,12,0.6)]`}
             >
               {g.items.map((item) => (
                 <ListItem key={item.id} block={item} />
