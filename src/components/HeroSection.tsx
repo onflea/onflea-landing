@@ -81,6 +81,8 @@ export default function HeroSection() {
             </button>
             <a
               href={SHOP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border border-[rgba(255,255,255,0.4)] text-white text-[12px] font-medium tracking-[2.16px] uppercase px-8 py-4 inline-flex items-center justify-center gap-2 hover:border-white transition-colors"
             >
               지금 쇼핑하기

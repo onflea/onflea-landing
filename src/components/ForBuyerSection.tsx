@@ -52,6 +52,8 @@ export default function ForBuyerSection() {
             </div>
             <a
               href={SHOP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border border-[rgba(12,12,12,0.3)] text-[#0c0c0c] text-[12px] font-medium tracking-[2.16px] uppercase px-8 py-4 inline-flex items-center gap-2 hover:bg-[#0c0c0c] hover:text-white transition-colors"
             >
               지금 쇼핑하기
