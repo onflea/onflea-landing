@@ -8,9 +8,9 @@ export default function LegalHeader() {
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
         <Link href="/" aria-label="ONFLEA 홈">
           <Image
-            src="/images/logo-horizontal-black.png"
+            src="/images/logo-symbol-black.png"
             alt="ONFLEA"
-            width={1089}
+            width={260}
             height={190}
             className="h-7 w-auto"
             priority
