@@ -22,7 +22,7 @@ export default function Navbar() {
     { label: '크리에이터', href: '#creator' },
     { label: '구매자', href: '#buyer' },
     { label: '서비스 안내', href: '#how-it-works' },
-    { label: '소식', href: '#news' },
+    { label: '소식', href: '/news' },
     { label: 'FAQ', href: '#faq' },
   ]
 
@@ -79,6 +79,8 @@ export default function Navbar() {
                 : 'border-[rgba(255,255,255,0.4)] text-white hover:border-white'
             }`}
             href={SHOP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             쇼핑몰 바로가기
           </a>
@@ -113,6 +115,8 @@ export default function Navbar() {
           ))}
           <a
             href={SHOP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             className="text-sm border border-[rgba(12,12,12,0.25)] text-[#0c0c0c] font-medium px-5 py-3 text-center"
           >
