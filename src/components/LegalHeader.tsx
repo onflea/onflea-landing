@@ -2,13 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
-export default function LegalHeader({
-  backHref = '/',
-  backLabel = '홈으로',
-}: {
-  backHref?: string
-  backLabel?: string
-}) {
+export default function LegalHeader() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[rgba(12,12,12,0.1)]">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
@@ -23,11 +17,11 @@ export default function LegalHeader({
           />
         </Link>
         <Link
-          href={backHref}
+          href="/"
           className="inline-flex items-center gap-2 text-sm text-[rgba(12,12,12,0.6)] hover:text-[#0c0c0c] transition-colors"
         >
           <ArrowLeft size={16} />
-          {backLabel}
+          홈으로
         </Link>
       </div>
     </header>

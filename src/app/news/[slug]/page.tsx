@@ -42,15 +42,18 @@ export default async function NewsPostPage({ params }: { params: { slug: string 
 
   return (
     <>
-      {/* 헤더가 고정되어 있어 글을 읽는 중에도 바로 목록으로 돌아갈 수 있음 */}
-      <LegalHeader backHref="/news" backLabel="목록으로" />
+      <LegalHeader />
       <ViewTracker slug={post.slug} />
       <main className="bg-white min-h-screen">
-        <article className="max-w-[768px] mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-20">
+        <article className="max-w-[768px] mx-auto px-6 md:px-12 pt-8 md:pt-10 pb-20">
           {/* 헤더 */}
-          <p className="text-[12px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.55)] mb-6">
-            News
-          </p>
+          <Link
+            href="/news"
+            className="inline-flex items-center gap-2 mb-10 md:mb-14 text-[15px] text-[rgba(12,12,12,0.7)] hover:text-[#0c0c0c] transition-colors"
+          >
+            <ArrowLeft size={16} />
+            목록으로
+          </Link>
           <h1 className="text-3xl md:text-[44px] font-black leading-[1.3] text-[#0c0c0c] mb-6 break-keep">
             {post.title}
           </h1>
