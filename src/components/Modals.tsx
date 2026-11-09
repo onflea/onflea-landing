@@ -399,7 +399,14 @@ function BuyerModal({ onClose }: { onClose: () => void }) {
 }
 
 export default function Modals() {
-  const { modal, close } = useModal()
+  const { modal, close, openCreator } = useModal()
+
+  // 링크에 ?apply=1 이 붙어 있으면 접속 시 입점 문의 모달을 자동으로 연다
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('apply') === '1') openCreator()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   if (!modal) return null
 
