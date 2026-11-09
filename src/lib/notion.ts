@@ -1,7 +1,10 @@
 // 노션 "NEWS 작성" DB 연동 (docs/news-feature-plan.md 참고)
 const NEWS_DATABASE_ID = '3a2d652436f680e0b45bd4e75ec7fc51'
-// 노션 수정 후 사이트 반영까지 최대 10분
+// 발행·수정은 웹훅(api/notion/webhook)이 NEWS_CACHE_TAG로 바로 반영한다.
+// 주기 갱신은 웹훅이 누락될 때와 노션 이미지 URL 만료(약 1시간)에 대비해 유지
 const REVALIDATE_SECONDS = 600
+export const NEWS_CACHE_TAG = 'news'
+const NEWS_FETCH_CACHE = { revalidate: REVALIDATE_SECONDS, tags: [NEWS_CACHE_TAG] }
 
 const API_HEADERS = {
   Authorization: `Bearer ${process.env.NOTION_TOKEN}`,
@@ -83,7 +86,7 @@ export async function getNews(limit?: number): Promise<NewsItem[]> {
         sorts: [{ property: '발행일', direction: 'descending' }],
         page_size: 100,
       }),
-      next: { revalidate: REVALIDATE_SECONDS },
+      next: NEWS_FETCH_CACHE,
     })
     if (!res.ok) throw new Error(`notion-query-failed: ${res.status}`)
 
@@ -109,7 +112,7 @@ export async function getNewsPost(slug: string): Promise<NewsItem | null> {
   try {
     const res = await fetch(`https://api.notion.com/v1/pages/${slug}`, {
       headers: API_HEADERS,
-      next: { revalidate: REVALIDATE_SECONDS },
+      next: NEWS_FETCH_CACHE,
     })
     if (!res.ok) return null
 
@@ -136,7 +139,7 @@ export async function getNewsBlocks(slug: string): Promise<NotionBlock[]> {
       if (cursor) params.set('start_cursor', cursor)
       const res = await fetch(
         `https://api.notion.com/v1/blocks/${blockId}/children?${params}`,
-        { headers: API_HEADERS, next: { revalidate: REVALIDATE_SECONDS } },
+        { headers: API_HEADERS, next: NEWS_FETCH_CACHE },
       )
       if (!res.ok) throw new Error(`notion-blocks-failed: ${res.status}`)
       const data = (await res.json()) as {
