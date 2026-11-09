@@ -272,10 +272,20 @@ export default function Modals() {
 
   if (!modal) return null
 
+  const handleClose = () => {
+    close()
+    // 닫은 뒤 새로고침·링크 복사 시 모달이 다시 열리지 않도록 apply만 제거 (다른 파라미터와 해시는 유지)
+    const url = new URL(window.location.href)
+    if (url.searchParams.has('apply')) {
+      url.searchParams.delete('apply')
+      window.history.replaceState(window.history.state, '', url)
+    }
+  }
+
   return (
     <>
-      <Overlay onClose={close} />
-      {modal === 'creator' && <CreatorModal onClose={close} />}
+      <Overlay onClose={handleClose} />
+      {modal === 'creator' && <CreatorModal onClose={handleClose} />}
     </>
   )
 }
