@@ -42,7 +42,8 @@ export default async function NewsPostPage({ params }: { params: { slug: string 
 
   return (
     <>
-      <LegalHeader />
+      {/* 헤더가 고정되어 있어 글을 읽는 중에도 바로 목록으로 돌아갈 수 있음 */}
+      <LegalHeader backHref="/news" backLabel="목록으로" />
       <ViewTracker slug={post.slug} />
       <main className="bg-white min-h-screen">
         <article className="max-w-[768px] mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-20">
@@ -60,6 +61,7 @@ export default async function NewsPostPage({ params }: { params: { slug: string 
             <span className="text-[14px] text-[rgba(12,12,12,0.6)] tabular-nums">
               {formatNewsDate(post.date)}
             </span>
+            <span aria-hidden className="w-px h-3 bg-[rgba(12,12,12,0.3)]" />
             <span className="text-[14px] text-[rgba(12,12,12,0.6)]">{NEWS_PUBLISHER}</span>
           </div>
 

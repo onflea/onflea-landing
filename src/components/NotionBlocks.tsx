@@ -228,7 +228,7 @@ function Block({ block }: { block: NotionBlock }) {
         <figure className="my-10">
           {/* 노션 이미지 URL은 만료 기한이 있어 next/image 최적화 대신 원본 사용 */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt={caption} className="w-full h-auto" />
+          <img src={src} alt={caption} className="w-full h-auto rounded-xl" />
           {caption && (
             <figcaption className="mt-3 text-[14px] text-[rgba(12,12,12,0.6)] text-center">
               {caption}
