@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import { SHOP_URL } from '@/lib/constants'
 import './globals.css'
 
 const notoSansKR = Noto_Sans_KR({
@@ -97,7 +98,7 @@ const jsonLd = {
       description: siteDescription,
       email: 'contact@onflea.kr',
       telephone: '+82-10-5648-4170',
-      sameAs: ['https://www.instagram.com/onflea.official/'],
+      sameAs: ['https://www.instagram.com/onflea.official/', SHOP_URL],
     },
     {
       '@type': 'WebSite',

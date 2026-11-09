@@ -1,2 +1,2 @@
-// 아임웹 쇼핑몰 (오픈 후 onflea.kr은 쇼핑몰, corp.onflea.kr은 랜딩페이지)
-export const SHOP_URL = 'https://onflea.kr'
+// 아임웹 쇼핑몰 (아임웹 기본 도메인 사용. onflea.kr은 랜딩(corp.onflea.kr)으로 308 리다이렉트)
+export const SHOP_URL = 'https://onfleashop.imweb.me'
