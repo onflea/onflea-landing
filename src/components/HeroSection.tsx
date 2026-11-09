@@ -2,9 +2,10 @@
 
 import { preload } from 'react-dom'
 import { useModal } from '@/context/ModalContext'
+import { SHOP_URL } from '@/lib/constants'
 
 export default function HeroSection() {
-  const { openCreator, openBuyer } = useModal()
+  const { openCreator } = useModal()
   // CSS background-image는 preload되지 않으므로 명시적으로 미리 로드 (LCP 개선)
   preload('/images/hero-bg.jpg', { as: 'image' })
 
@@ -41,9 +42,9 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2.5 border border-[rgba(255,255,255,0.25)] px-[15px] py-[9px] mb-6 animate-fade-in-up"
             style={{ animationDelay: '100ms' }}
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-white opacity-70 shrink-0" />
+            <div className="w-1.5 h-1.5 rounded-full bg-white opacity-70 shrink-0 animate-pulse" />
             <p className="text-white/70 text-[10px] tracking-[2.5px] uppercase font-normal">
-              Online Flea Market Platform
+              Online Flea Market <span className="text-white font-bold">— Now Open</span>
             </p>
           </div>
 
@@ -78,13 +79,15 @@ export default function HeroSection() {
               입점 문의하기
               <span className="text-sm">→</span>
             </button>
-            <button
-              onClick={openBuyer}
+            <a
+              href={SHOP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border border-[rgba(255,255,255,0.4)] text-white text-[12px] font-medium tracking-[2.16px] uppercase px-8 py-4 inline-flex items-center justify-center gap-2 hover:border-white transition-colors"
             >
-              오픈 알림 받기
+              지금 쇼핑하기
               <span className="text-sm">→</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>

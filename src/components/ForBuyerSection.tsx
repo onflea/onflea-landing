@@ -1,7 +1,5 @@
-'use client'
-
 import { Globe, Search, ClipboardCheck, ShieldCheck, Tag } from 'lucide-react'
-import { useModal } from '@/context/ModalContext'
+import { SHOP_URL } from '@/lib/constants'
 
 const buyerBenefits = [
   { label: '지역 제한 없이 온라인 구매 가능',     icon: Globe },
@@ -12,7 +10,6 @@ const buyerBenefits = [
 ]
 
 export default function ForBuyerSection() {
-  const { openBuyer } = useModal()
   return (
     <section id="buyer" className="bg-[#f5f5f5] py-24 md:py-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
@@ -53,13 +50,15 @@ export default function ForBuyerSection() {
                 좋아서 고른 옷 한 벌이 작은 기부로 이어집니다.
               </p>
             </div>
-            <button
-              onClick={openBuyer}
+            <a
+              href={SHOP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border border-[rgba(12,12,12,0.3)] text-[#0c0c0c] text-[12px] font-medium tracking-[2.16px] uppercase px-8 py-4 inline-flex items-center gap-2 hover:bg-[#0c0c0c] hover:text-white transition-colors"
             >
-              오픈 알림 받기
+              지금 쇼핑하기
               <span className="text-sm">→</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>

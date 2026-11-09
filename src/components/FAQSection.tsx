@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: '구매자는 어디서 상품을 구매하나요?',
-    a: '크리에이터별 온라인 판매 페이지에서 상품 정보를 확인하고 구매할 수 있습니다. 별도의 오프라인 방문이나 앱 설치 없이 웹에서 바로 이용 가능합니다.',
+    a: 'ONFLEA 쇼핑몰(onfleashop.imweb.me)에서 크리에이터별 상품 정보를 확인하고 구매할 수 있습니다. 별도의 오프라인 방문이나 앱 설치 없이 웹에서 바로 이용 가능합니다.',
   },
   {
     q: '상품 정보는 어떻게 제공되나요?',
@@ -47,13 +47,13 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="bg-white py-24 md:py-32">
+    <section id="faq" className="bg-[#f5f5f5] py-24 md:py-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        <div className="grid md:grid-cols-[352px_1fr] gap-16 md:gap-24">
+        <div className="bg-white p-8 md:p-14 grid md:grid-cols-[352px_1fr] gap-12 md:gap-20">
           {/* 왼쪽 — 타이틀 + 문의 안내 */}
           <div data-reveal className="flex flex-col">
             <p className="text-[10px] font-bold tracking-[3px] uppercase text-[rgba(12,12,12,0.35)] mb-4">
@@ -64,7 +64,7 @@ export default function FAQSection() {
             </h2>
 
             {/* 추가 문의 안내 */}
-            <div className="mt-10 md:mt-auto p-7 bg-[#f5f5f5]">
+            <div className="mt-10 md:mt-auto">
               <p className="text-[15px] font-bold text-[#0c0c0c] mb-2">
                 찾으시는 답변이 없나요?
               </p>

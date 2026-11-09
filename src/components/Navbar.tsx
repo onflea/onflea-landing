@@ -3,12 +3,14 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { useModal } from '@/context/ModalContext'
+import { SHOP_URL } from '@/lib/constants'
+import AnnouncementBar from '@/components/AnnouncementBar'
 import NavLogo, { LOGO_WIDTH, NAV_TRANSITION_MS, SYMBOL_WIDTH } from './NavLogo'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { openCreator, openBuyer } = useModal()
+  const { openCreator } = useModal()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -20,6 +22,7 @@ export default function Navbar() {
     { label: '크리에이터', href: '#creator' },
     { label: '구매자', href: '#buyer' },
     { label: '서비스 안내', href: '#how-it-works' },
+    { label: '소식', href: '/news' },
     { label: 'FAQ', href: '#faq' },
   ]
 
@@ -33,6 +36,7 @@ export default function Navbar() {
       // 배경 전환을 로고 모핑 길이와 맞춤
       style={{ transitionDuration: `${NAV_TRANSITION_MS}ms` }}
     >
+      <AnnouncementBar />
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
         {/* 자리는 로고 전체 폭으로 고정해 가운데 메뉴가 밀리지 않게 하고,
             클릭 영역(a)만 심볼 상태에서 심볼 폭으로 줄임 (SVG는 pointer-events-none) */}
@@ -69,16 +73,18 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <button
+          <a
             className={`text-sm font-medium px-5 py-2.5 border transition-colors ${
               scrolled || menuOpen
                 ? 'border-[rgba(12,12,12,0.25)] text-[#0c0c0c] hover:bg-[#0c0c0c] hover:text-white hover:border-[#0c0c0c]'
                 : 'border-[rgba(255,255,255,0.4)] text-white hover:border-white'
             }`}
-            onClick={openBuyer}
+            href={SHOP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            오픈 알림 받기
-          </button>
+            쇼핑몰 바로가기
+          </a>
           <button
             className="bg-[#0c0c0c] text-white text-sm font-bold px-5 py-2.5 tracking-[1.8px] uppercase hover:bg-[#333] transition-colors"
             onClick={openCreator}
@@ -108,12 +114,15 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <button
-            onClick={() => { setMenuOpen(false); openBuyer() }}
+          <a
+            href={SHOP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
             className="text-sm border border-[rgba(12,12,12,0.25)] text-[#0c0c0c] font-medium px-5 py-3 text-center"
           >
-            오픈 알림 받기
-          </button>
+            쇼핑몰 바로가기
+          </a>
           <button
             onClick={() => { setMenuOpen(false); openCreator() }}
             className="text-sm bg-[#0c0c0c] text-white font-bold px-5 py-3 text-center tracking-[1.8px] uppercase"

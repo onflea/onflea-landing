@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { SHOP_URL } from '@/lib/constants'
 
 const linkGroups = [
   {
@@ -6,6 +7,7 @@ const linkGroups = [
     links: [
       // 히어로가 sticky라 #hero 앵커가 동작하지 않음 → 문서 최상단으로
       { label: 'About', href: '#' },
+      { label: 'Shop', href: SHOP_URL, external: true },
       { label: 'Contact', href: 'mailto:contact@onflea.kr' },
     ],
   },
