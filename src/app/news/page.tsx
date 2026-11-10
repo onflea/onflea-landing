@@ -2,16 +2,15 @@ import LegalHeader from '@/components/LegalHeader'
 import Footer from '@/components/Footer'
 import NewsList from '@/components/NewsList'
 import { getNews } from '@/lib/notion'
+import { pageMetadata } from '@/lib/seo'
 
 export const revalidate = 600
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: '소식 | ONFLEA(온플리)',
   description: 'ONFLEA(온플리)의 기부 소식, 크리에이터 입점 소식, 서비스 업데이트를 전합니다.',
-  alternates: {
-    canonical: '/news',
-  },
-}
+  path: '/news',
+})
 
 export default async function NewsPage() {
   const news = await getNews()

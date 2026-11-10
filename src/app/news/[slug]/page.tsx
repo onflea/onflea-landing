@@ -8,6 +8,7 @@ import NewsRow from '@/components/NewsRow'
 import ViewTracker from '@/components/ViewTracker'
 import { getNews, getNewsPost, getNewsBlocks, formatNewsDate } from '@/lib/notion'
 import { NEWS_PUBLISHER } from '@/lib/constants'
+import { pageMetadata } from '@/lib/seo'
 
 export const revalidate = 600
 
@@ -20,16 +21,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const post = await getNewsPost(params.slug)
   if (!post) return { title: '소식 | ONFLEA(온플리)' }
   return {
-    title: `${post.title} | ONFLEA(온플리)`,
-    description: `ONFLEA ${post.category} 소식 — ${post.title}`,
+    ...pageMetadata({
+      title: `${post.title} | ONFLEA(온플리)`,
+      description: `ONFLEA ${post.category} 소식 — ${post.title}`,
+      path: `/news/${post.slug}`,
+      shareTitle: post.title,
+      shareDescription: `ONFLEA ${post.category} 소식`,
+      // 커버가 없는 글은 로고
+      image: post.cover ? { url: post.cover, alt: post.title } : undefined,
+      article: { publishedTime: post.date, section: post.category, authors: [NEWS_PUBLISHER] },
+    }),
     authors: [{ name: NEWS_PUBLISHER }],
-    alternates: { canonical: `/news/${post.slug}` },
-    openGraph: {
-      title: post.title,
-      description: `ONFLEA ${post.category} 소식`,
-      type: 'article',
-      authors: [NEWS_PUBLISHER],
-    },
   }
 }
 

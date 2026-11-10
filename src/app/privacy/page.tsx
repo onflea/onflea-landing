@@ -1,13 +1,12 @@
 import LegalHeader from '@/components/LegalHeader'
 import Footer from '@/components/Footer'
+import { pageMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: '개인정보처리방침 | ONFLEA(온플리)',
   description: 'ONFLEA(온플리)의 개인정보처리방침입니다.',
-  alternates: {
-    canonical: '/privacy',
-  },
-}
+  path: '/privacy',
+})
 
 const sections = [
   {

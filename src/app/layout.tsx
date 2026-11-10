@@ -3,6 +3,7 @@ import { Noto_Sans_KR } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import { SHOP_URL } from '@/lib/constants'
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from '@/lib/seo'
 import './globals.css'
 
 const notoSansKR = Noto_Sans_KR({
@@ -12,11 +13,10 @@ const notoSansKR = Noto_Sans_KR({
   display: 'swap',
 })
 
-const siteUrl = 'https://corp.onflea.kr'
+const siteUrl = SITE_URL
 const siteTitle = 'ONFLEA(온플리) | 크리에이터의 옷장 속 아이템을, 팬의 일상으로'
 const siteDescription =
   'ONFLEA(온플리)는 패션 크리에이터의 협찬·촬영 의류를 수거부터 판매·배송·정산까지 대행하는 온라인 플리마켓 플랫폼입니다.'
-const ogImage = '/og-logo.jpg'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -43,23 +43,16 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     url: siteUrl,
-    siteName: 'ONFLEA(온플리)',
+    siteName: SITE_NAME,
     type: 'website',
     locale: 'ko_KR',
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: 'ONFLEA(온플리)',
-      },
-    ],
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: [ogImage],
+    images: [DEFAULT_OG_IMAGE.url],
   },
   // 구글은 DNS TXT 레코드로 인증 완료 (메타태그 불필요)
   verification: {
