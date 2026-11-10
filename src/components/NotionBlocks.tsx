@@ -226,7 +226,7 @@ function Block({ block }: { block: NotionBlock }) {
       const caption = data.caption?.map((c) => c.plain_text).join('') ?? ''
       return (
         <figure className="my-10">
-          {/* 노션 이미지 URL은 만료 기한이 있어 next/image 최적화 대신 원본 사용 */}
+          {/* 노션 업로드 이미지는 getNewsBlocks에서 만료 없는 /api/news/image 주소로 바뀌어 들어온다 */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={src} alt={caption} className="w-full h-auto rounded-xl" />
           {caption && (
